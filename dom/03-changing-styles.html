@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DOM — Changing Styles</title>
+  <style>
+    *::before,
+    *::after,
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #f0f2f5;
+      padding: 24px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 7px 16px;
+      background: #fff;
+      border-radius: 8px;
+      color: #3949ab;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, .12);
+    }
+
+    .hdr {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 24px 28px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      border-left: 6px solid #1e88e5;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #1e88e5;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
+    }
+
+    .demo {
+      background: #f8faff;
+      border: 1.5px dashed #c5cae9;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+      margin: 5px;
+    }
+
+    #box {
+      width: 100px;
+      height: 100px;
+      background: #ddd;
+      margin: 0 auto 15px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="../index.html" class="back">← Workshop Index</a>
+  <div class="hdr">
+    <div class="badge">DOM</div>
+    <h1>Style Injection</h1>
+    <p>Modify CSS directly via JavaScript</p>
+  </div>
+  <div class="card">
+    <div class="demo">
+      <div id="box"></div>
+      <button class="btn" style="background:#e53935" onclick="paint('#e53935')">Red</button>
+      <button class="btn" style="background:#1e88e5" onclick="paint('#1e88e5')">Blue</button>
+    </div>
+  </div>
+  <script>
+    function paint(color) {
+      const b = document.getElementById('box');
+      b.style.backgroundColor = color;
+      b.style.transform = "scale(1.1)";
+    }
+  </script>
+</body>
+
+</html>

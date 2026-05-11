@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab Component</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .tabs-container {
+      width: 500px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    /* --- Tab buttons row --- */
+    .tab-buttons {
+      display: flex;
+      background: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 14px 16px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      color: #888;
+      font-weight: 500;
+      transition: color 180ms, background 180ms;
+    }
+
+    .tab-btn:hover {
+      background: #efefef;
+      color: #333;
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: #0077cc;
+      font-weight: 700;
+      box-shadow: inset 0 -2px 0 #0077cc;
+    }
+
+    /* --- Panels --- */
+    .tab-panel {
+      display: none;
+      padding: 24px;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* --- Panel 1: Calculator-like button grid --- */
+    .calc-display {
+      background: #1a1a2e;
+      color: #fff;
+      font-size: 28px;
+      text-align: right;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-family: monospace;
+      min-height: 64px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .calc-btn {
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 120ms, transform 80ms;
+    }
+
+    .calc-btn:active {
+      transform: scale(0.95);
+    }
+
+    .calc-btn.num {
+      background: #e8e8e8;
+      color: #222;
+    }
+
+    .calc-btn.op {
+      background: #0077cc;
+      color: white;
+    }
+
+    .calc-btn.eq {
+      background: #00aa55;
+      color: white;
+      grid-column: span 2;
+    }
+
+    .calc-btn.clear {
+      background: #e84040;
+      color: white;
+    }
+
+    .calc-btn.num:hover {
+      background: #d8d8d8;
+    }
+
+    .calc-btn.op:hover {
+      background: #005faa;
+    }
+
+    .calc-btn.eq:hover {
+      background: #008844;
+    }
+
+    .calc-btn.clear:hover {
+      background: #c02020;
+    }
+
+    /* --- Panel 2: History list --- */
+    .history-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    .history-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #f7f7f7;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .history-item .result {
+      font-weight: 700;
+      color: #0077cc;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: #aaa;
+      padding: 40px 0;
+      font-size: 14px;
+    }
+
+    /* --- Panel 3: Settings --- */
+    .settings-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .setting-row label {
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .setting-row select,
+    .setting-row input[type="range"] {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      color: #333;
+    }
+
+    .toggle {
+      width: 44px;
+      height: 24px;
+      background: #ccc;
+      border-radius: 999px;
+      cursor: pointer;
+      position: relative;
+      transition: background 200ms;
+      border: none;
+    }
+
+    .toggle.on {
+      background: #0077cc;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: left 200ms;
+    }
+
+    .toggle.on::after {
+      left: 23px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="tabs-container">
+
+    <!-- Tab buttons -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-target="panel1">🧮 Calculator</button>
+      <button class="tab-btn" data-target="panel2">📋 History</button>
+      <button class="tab-btn" data-target="panel3">⚙️ Settings</button>
+    </div>
+
+    <!-- Panel 1: Calculator -->
+    <div class="tab-panel active" id="panel1">
+      <div class="calc-display" id="display">0</div>
+      <div class="calc-grid">
+        <button class="calc-btn clear" onclick="clearDisplay()">C</button>
+        <button class="calc-btn op" onclick="appendOp('%')">%</button>
+        <button class="calc-btn op" onclick="appendOp('/')">÷</button>
+        <button class="calc-btn op" onclick="appendOp('*')">×</button>
+
+        <button class="calc-btn num" onclick="appendNum('7')">7</button>
+        <button class="calc-btn num" onclick="appendNum('8')">8</button>
+        <button class="calc-btn num" onclick="appendNum('9')">9</button>
+        <button class="calc-btn op" onclick="appendOp('-')">−</button>
+
+        <button class="calc-btn num" onclick="appendNum('4')">4</button>
+        <button class="calc-btn num" onclick="appendNum('5')">5</button>
+        <button class="calc-btn num" onclick="appendNum('6')">6</button>
+        <button class="calc-btn op" onclick="appendOp('+')">+</button>
+
+        <button class="calc-btn num" onclick="appendNum('1')">1</button>
+        <button class="calc-btn num" onclick="appendNum('2')">2</button>
+        <button class="calc-btn num" onclick="appendNum('3')">3</button>
+        <button class="calc-btn num" onclick="appendNum('0')">0</button>
+
+        <button class="calc-btn num" onclick="appendNum('.')">.</button>
+        <button class="calc-btn eq" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <!-- Panel 2: History -->
+    <div class="tab-panel" id="panel2">
+      <p class="history-title">Calculation History</p>
+      <ul class="history-list" id="history-list">
+        <li class="empty-state">No calculations yet.</li>
+      </ul>
+    </div>
+
+    <!-- Panel 3: Settings -->
+    <div class="tab-panel" id="panel3">
+      <div class="settings-group">
+        <div class="setting-row">
+          <label>Theme</label>
+          <select>
+            <option>Light</option>
+            <option>Dark</option>
+            <option>System</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <label>Sound effects</label>
+          <button class="toggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="setting-row">
+          <label>Decimal precision</label>
+          <select>
+            <option>2 places</option>
+            <option>4 places</option>
+            <option>Auto</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <label>Save history</label>
+          <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // --- Tab switching ---
+    const buttons = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    // --- Calculator logic ---
+    let expression = '';
+
+    function updateDisplay(val) {
+      document.getElementById('display').textContent = val || '0';
+    }
+
+    function appendNum(n) {
+      expression += n;
+      updateDisplay(expression);
+    }
+
+    function appendOp(op) {
+      // Prevent double operators
+      if (expression && !'+-*/%'.includes(expression.slice(-1))) {
+        expression += op;
+        updateDisplay(expression);
+      }
+    }
+
+    function clearDisplay() {
+      expression = '';
+      updateDisplay('0');
+    }
+
+    function calculate() {
+      try {
+        const result = Function('"use strict"; return (' + expression + ')')();
+        addHistory(expression, result);
+        expression = String(result);
+        updateDisplay(expression);
+      } catch {
+        updateDisplay('Error');
+        expression = '';
+      }
+    }
+
+    function addHistory(expr, result) {
+      const list = document.getElementById('history-list');
+      // Remove empty state placeholder if present
+      const empty = list.querySelector('.empty-state');
+      if (empty) empty.remove();
+
+      const li = document.createElement('li');
+      li.className = 'history-item';
+      li.innerHTML = `<span>${expr}</span><span class="result">= ${result}</span>`;
+      list.prepend(li);
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DOM — Final Demo</title>
+  <style>
+    *::before,
+    *::after,
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #f0f2f5;
+      padding: 24px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 7px 16px;
+      background: #fff;
+      border-radius: 8px;
+      color: #3949ab;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .hdr {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 24px 28px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      border-left: 6px solid #1e88e5;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
+      text-align: center;
+    }
+
+    #val {
+      font-size: 80px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      transition: 0.2s;
+    }
+
+    .btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      background: #1e88e5;
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 0 10px;
+      box-shadow: 0 4px 10px rgba(30, 136, 229, 0.3);
+    }
+
+    .btn:active {
+      transform: scale(0.9);
+    }
+  </style>
+</head>
+
+<body>
+  <a href="../index.html" class="back">← Workshop Index</a>
+  <div class="hdr">
+    <h1>Counter App</h1>
+    <p>The final combined concept demo</p>
+  </div>
+  <div class="card">
+    <h1 id="val">0</h1>
+    <button class="btn" onclick="change(-1)">−</button>
+    <button class="btn" onclick="change(1)">+</button>
+  </div>
+  <script>
+    let v = 0;
+    function change(amt) {
+      v += amt;
+      const el = document.getElementById('val');
+      el.innerText = v;
+      el.style.color = v < 0 ? "#e53935" : (v > 0 ? "#43a047" : "#1a1a2e");
+      el.style.transform = "scale(1.2)";
+      setTimeout(() => el.style.transform = "scale(1)", 100);
+    }
+  </script>
+</body>
+
+</html>

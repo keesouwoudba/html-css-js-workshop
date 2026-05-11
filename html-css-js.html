@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta charset="utf-8" />
+    <meta content="initial-scale=1, width=device-width" name="viewport" />
+    <meta content="" property="og:image" />
+    <meta content="Lecture 8 - CS50" property="og:title" />
+    <link href="https://cs50.harvard.edu/x/2024/favicon.ico?1778206953" rel="icon" />
+    <!-- https://fonts.google.com/specimen/PT+Sans?query=PT+Sans&selection.family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <!-- https://getbootstrap.com/docs/ -->
+    <script src="https://cs50.harvard.edu/x/2024/assets/jquery/dist/jquery.min.js?1778206953"></script>
+    <script src="https://cs50.harvard.edu/x/2024/assets/bootstrap/dist/js/bootstrap.bundle.min.js?1778206953"></script>
+    <!-- https://bootstrap-table.com/docs/getting-started/introduction/ -->
+    <link href="https://cs50.harvard.edu/x/2024/assets/bootstrap-table/dist/bootstrap-table.min.css?1778206953"
+        rel="stylesheet" />
+    <script
+        src="https://cs50.harvard.edu/x/2024/assets/bootstrap-table/dist/bootstrap-table.min.js?1778206953"></script>
+    <script
+        src="https://cs50.harvard.edu/x/2024/assets/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js?1778206953"></script>
+    <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
+    <link crossorigin="anonymous" href="https://kit.fontawesome.com/a6e66aa089.css" rel="stylesheet" />
+    <!-- https://moment.github.io/luxon/ -->
+    <script src="https://cs50.harvard.edu/x/2024/assets/luxon/build/global/luxon.min.js?1778206953"></script>
+    <!-- http://docs.mathjax.org/ -->
+    <!-- http://docs.mathjax.org/en/latest/options/output/chtml.html?highlight=displayAlign#the-configuration-block -->
+    <!-- https://docs.mathjax.org/en/latest/output/fonts.html -->
+    <script>
+        MathJax = {
+            loader: {
+                paths: {
+                    'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+                }
+            },
+            output: {
+                displayAlign: 'left'
+            }
+        };
+    </script>
+    <script src="https://cs50.harvard.edu/x/2024/assets/mathjax/tex-mml-chtml.js?1778206953"></script>
+    <!-- https://github.com/verlok/vanilla-lazyload -->
+    <script src="https://cs50.harvard.edu/x/2024/assets/vanilla-lazyload/dist/lazyload.min.js?1778206953"></script>
+    <!-- https://iframe-resizer.com/ -->
+    <script src="https://cs50.harvard.edu/x/2024/assets/@iframe-resizer/parent/index.umd.js?1778206953"></script>
+    <!-- https://github.com/scratchblocks/scratchblocks/releases -->
+    <script src="https://cs50.harvard.edu/x/2024/assets/scratchblocks.min.js?1778206953"></script>
+    <!-- https://mermaid-js.github.io/ -->
+    <script src="https://cs50.harvard.edu/x/2024/assets/mermaid/dist/mermaid.min.js?1778206953"></script>
+    <!-- https://github.com/twitter/twemoji -->
+    <script src="https://cs50.harvard.edu/x/2024/assets/@twemoji/api/dist/twemoji.min.js?1778206953"></script>
+    <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
+    <script src="https://cs50.harvard.edu/x/2024/assets/algoliasearch/dist/algoliasearch.umd.js?1778206953"></script>
+    <script
+        src="https://cs50.harvard.edu/x/2024/assets/instantsearch.js/dist/instantsearch.production.min.js?1778206953"></script>
+    <link href="https://cs50.harvard.edu/x/2024/assets/page.css?1778206953" rel="stylesheet" />
+    <script src="https://cs50.harvard.edu/x/2024/assets/jekyll-theme-cs50.js?1778206953"></script>
+    <script>
+        window.CS50 = {
+            local: { "day": "numeric", "hour": "numeric", "minute": "numeric", "month": "long", "timeZoneName": "short", "weekday": "long", "year": "numeric" },
+            locale: "en",
+            tz: "America/New_York"
+        };
+    </script>
+    <title>html css js</title>
+    <meta
+        content="Welcome! In previous weeks, we introduced you to Python, a high-level programming language that utilized the same building blocks we learned in C. Today, we..."
+        property="og:description" />
+    <style>
+        /* Dedicated Button Styles to bypass CS50 overrides */
+        .action-btn {
+            display: inline-block;
+            font-weight: 500;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            text-decoration: none !important;
+            cursor: pointer;
+            transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+            font-family: inherit;
+            margin-right: 0.5rem;
+        }
+
+        .demo-btn {
+            color: #ffffff !important;
+            background-color: #4b5563;
+            /* Slate grey matches academic style better */
+            border: 1px solid #4b5563;
+        }
+
+        .demo-btn:hover {
+            background-color: #374151;
+            border-color: #374151;
+            color: #ffffff !important;
+        }
+
+        .download-btn {
+            color: #4b5563 !important;
+            background-color: #f9fafb;
+            border: 1px solid #d1d5db;
+        }
+
+        .download-btn:hover {
+            background-color: #f3f4f6;
+            border-color: #9ca3af;
+            color: #111827 !important;
+        }
+    </style>
+    <style>
+        /* Dedicated Button Styles to bypass CS50 overrides */
+        .action-btn {
+            display: inline-block;
+            font-weight: 500;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            text-decoration: none !important;
+            cursor: pointer;
+            transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+            font-family: inherit;
+            margin-right: 0.5rem;
+        }
+
+        .demo-btn {
+            color: #ffffff !important;
+            background-color: #4b5563;
+            /* Slate grey matches academic style better */
+            border: 1px solid #4b5563;
+        }
+
+        .demo-btn:hover {
+            background-color: #374151;
+            border-color: #374151;
+            color: #ffffff !important;
+        }
+
+        .download-btn {
+            color: #ffffff !important;
+            background-color: #fa4848;
+            border: 1px solid #5e3413;
+        }
+
+        .download-btn:hover {
+            background-color: #f7614d;
+            border-color: #9ca3af;
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+
+<body class="invisible">
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-lg">
+                <header>
+                    <h1 data-id="html-css-js"><a href="#">HTML, CSS, JS</a></h1>
+                </header><button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-lg-none"
+                    data-bs-target="aside &gt; nav" data-bs-toggle="collapse">Menu</button>
+                <nav class="collapse d-lg-block" id="nav">
+                    <ul>
+                        <li data-marker="*"><a href="#workshop-script-html-css-javascript">Workshop Script: HTML, CSS
+                                &amp; JavaScript</a></li>
+                        <li data-marker="*"><a href="#before-we-start-the-big-picture">BEFORE WE START — The Big
+                                Picture</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#-">---</a></li>
+                        <li data-marker="*"><a href="#part-1-html">PART 1 — HTML</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#the-html-file">The HTML File</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#tags-elements-attributes">Tags, Elements,
+                                Attributes</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#text-tags">Text Tags</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#links">Links</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#images">Images</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#lists">Lists</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#forms-inputs">Forms &amp; Inputs</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#div-and-span">div and span</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#semantic-tags">Semantic Tags</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#html-attributes">HTML Attributes</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#-_1">---</a></li>
+                        <li data-marker="*"><a href="#part-2-css">PART 2 — CSS</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#what-css-is">What CSS Is</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#how-to-connect-css-to-html">How to Connect CSS to
+                                HTML</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#selectors">Selectors</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#colors">Colors</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#backgrounds">Backgrounds</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#text-fonts">Text &amp; Fonts</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#sizing">Sizing</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#box-model">Box Model</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#display">Display</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#opacity">Opacity</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#flexbox">Flexbox</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#position">Position</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#shadow-cursor">Shadow &amp; Cursor</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#-_2">---</a></li>
+                        <li data-marker="*"><a href="#part-3-javascript">PART 3 — JAVASCRIPT</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#what-javascript-is">What JavaScript Is</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#variables">Variables</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#strings">Strings</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#numbers">Numbers</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#booleans-comparison">Booleans &amp; Comparison</a>
+                        </li>
+                        <li data-marker="*"><a class="ms-3" href="#conditionals">Conditionals</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#loops">Loops</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#functions">Functions</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#arrays">Arrays</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#objects">Objects</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#console">console</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#-_3">---</a></li>
+                        <li data-marker="*"><a href="#part-4-the-dom">PART 4 — THE DOM</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#what-the-dom-is">What the DOM Is</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#selecting-elements">Selecting Elements</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#reading-changing-content">Reading &amp; Changing
+                                Content</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#attributes">Attributes</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#changing-css-via-javascript">Changing CSS via
+                                JavaScript</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#creating-removing-elements">Creating &amp; Removing
+                                Elements</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#events">Events</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#working-with-inputs">Working with Inputs</a></li>
+                        <li data-marker="*"><a class="ms-3" href="#patterns-putting-it-all-together">Patterns — Putting
+                                It All Together</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="col-lg">
+                <p>This will be long. Give me a moment to write it all out properly.</p>
+                <hr />
+                <h1 id="workshop-script-html-css-javascript">Workshop Script: HTML, CSS &amp; JavaScript</h1>
+                <hr />
+                <h1 id="before-we-start-the-big-picture">BEFORE WE START — The Big Picture</h1>
+                <p>Before we write a single line of code, let's understand what we're actually working with. Because
+                    these three technologies — HTML, CSS, and JavaScript — are not the same thing. They do completely
+                    different jobs, and they were invented at different times for different reasons.</p>
+                <p><strong>HTML</strong> is the skeleton. It's just text with special tags around it that tell the
+                    browser: this is a heading, this is a paragraph, this is a button. If you strip everything else
+                    away, HTML is just the raw content and structure of a page. No colors, no layout, no behavior. Just
+                    content.</p>
+                <p><strong>CSS</strong> is the stylist. It looks at that skeleton and says: make this heading blue, make
+                    that button rounded, put these two boxes side by side. CSS has no logic. It doesn't know what a
+                    "click" is. It just describes appearance.</p>
+                <p><strong>JavaScript</strong> is the brain. It's an actual programming language — the only one that
+                    runs natively inside the browser. It can read the page, change it, react to what the user does, talk
+                    to servers. Everything dynamic on the web is JavaScript.</p>
+                <p>So when you open Google.com: the text, the input box, the buttons — that's HTML. The colors, spacing,
+                    fonts — CSS. When you start typing and suggestions appear — JavaScript.</p>
+                <p>They work together, but they are completely separate. Keep that mental model. It'll save you a lot of
+                    confusion.</p>
+                <h2 id="-">---</h2>
+                <h1 id="part-1-html">PART 1 — HTML</h1>
+                <hr />
+                <h2 id="the-html-file">The HTML File</h2>
+                <p>Every webpage you've ever visited is, at its core, an HTML file. A text file with a
+                    <code>.html</code> extension. The browser opens it, reads it top to bottom, and paints what it finds
+                    onto the screen.</p>
+                <p>Every HTML file starts the same way:</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>My First Page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is my first webpage.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><strong><code>&lt;!DOCTYPE html&gt;</code></strong> — This first line is not a tag. It's a
+                    declaration. You're telling the browser: "hey, this is a modern HTML5 document." Without it,
+                    browsers fall back into a weird legacy mode. Always include it.</p>
+                <p><strong><code>&lt;html&gt;</code></strong> — Everything lives inside this. It's the root, the wrapper
+                    around the entire page.</p>
+                <p><strong><code>&lt;head&gt;</code></strong> — Think of this as the backstage. Everything in here is
+                    invisible to the user. The page title, links to CSS files, font imports. The browser reads it, uses
+                    it, but doesn't display it.</p>
+                <p><strong><code>&lt;body&gt;</code></strong> — This is the stage. Everything visible — text, images,
+                    buttons — goes here.</p>
+                <p><strong><code>&lt;title&gt;</code></strong> — That text you see in the browser tab. Not on the page,
+                    just in the tab.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Save it as <code>index.html</code>, open in a browser. Notice the
+                        title in the tab. Notice the heading is bigger than the paragraph — automatically, with zero
+                        CSS.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/01-structure.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="html/01-structure.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="tags-elements-attributes">Tags, Elements, Attributes</h2>
+                <p>HTML works with <strong>tags</strong>. A tag is a word in angle brackets: <code>&lt;p&gt;</code>.
+                    Most tags come in pairs — an opening tag and a closing tag with a slash: <code>&lt;/p&gt;</code>.
+                    Everything between them is the content.</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is a paragraph.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The combination of opening tag, content, and closing tag is called an <strong>element</strong>.</p>
+                <p>Some elements don't have content and don't need a closing tag:</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span> <span class="cm">&lt;!-- a line break --&gt;</span>
+<span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span> <span class="cm">&lt;!-- a horizontal line --&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"photo.jpg"</span> <span class="na">alt</span><span class="o">=</span><span class="s">"a photo"</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><strong>Attributes</strong> are extra information you add to a tag. They live inside the opening tag
+                    and follow the pattern <code>name="value"</code>:</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"https://google.com"</span> <span class="na">target</span><span class="o">=</span><span class="s">"_blank"</span><span class="p">&gt;</span>Go to Google<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>Here <code>href</code> tells the browser where the link goes. <code>target="_blank"</code> says: open
+                    it in a new tab. The text "Go to Google" is what the user sees and clicks.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Make an anchor tag. Click it. Change <code>target="_blank"</code> to
+                        see the difference.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/02-tags.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="html/02-tags.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="text-tags">Text Tags</h2>
+                <p>Headings in HTML go from <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>. <code>h1</code> is the
+                    biggest, most important heading — like the title of a book. <code>h6</code> is the smallest. The
+                    browser gives them sizes automatically. That's not CSS, that's just the browser's default style.</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Main Title<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Section Title<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Subsection<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>A regular paragraph of text.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>This text is bold.<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>This text is italic.<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">u</span><span class="p">&gt;</span>This text is underlined.<span class="p">&lt;/</span><span class="nt">u</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">s</span><span class="p">&gt;</span>This text has a strikethrough.<span class="p">&lt;/</span><span class="nt">s</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>&lt;strong&gt;</code> means "this is important." The browser renders it bold.
+                    <code>&lt;em&gt;</code> means "emphasis" — italic. <code>&lt;u&gt;</code> is underline.
+                    <code>&lt;s&gt;</code> is strikethrough, like a deleted price. These aren't just visual — they carry
+                    semantic meaning. A screen reader for blind users will actually read <code>&lt;strong&gt;</code>
+                    text with more emphasis.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> See how each tag affects the text differently.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/03-text-formatting.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="html/03-text-formatting.html">Download HTML</a></div>
+                <hr />
+                <h2 id="links">Links</h2>
+                <p>The anchor tag <code>&lt;a&gt;</code> is how the web works. The web is literally a web of documents
+                    connected by links. Every link you've ever clicked is an <code>&lt;a&gt;</code> tag.</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"https://google.com"</span><span class="p">&gt;</span>Go to Google<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"https://google.com"</span> <span class="na">target</span><span class="o">=</span><span class="s">"_blank"</span><span class="p">&gt;</span>Open in new tab<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"about.html"</span><span class="p">&gt;</span>Go to my About page<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>href</code> stands for "hypertext reference." It's the destination. It can be an absolute URL
+                    like <code>https://google.com</code>, or a relative path like <code>about.html</code> — which means
+                    "look for a file called about.html next to this file."</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Create two HTML files in the same folder. Link between them with a
+                        relative path.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/04-links.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="html/04-links.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="images">Images</h2>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"photo.jpg"</span> <span class="na">alt</span><span class="o">=</span><span class="s">"A sunset photo"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/photo.jpg"</span> <span class="na">alt</span><span class="o">=</span><span class="s">"A sunset photo"</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>&lt;img&gt;</code> has no closing tag. <code>src</code> is the path to the image file — either
+                    relative (next to your HTML file) or absolute (a full URL). <code>alt</code> is the text shown if
+                    the image doesn't load. It's also what screen readers read for blind users. Always include it.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Drop any image file next to your HTML file, reference it by name.
+                        Notice what happens if you mistype the filename.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/05-images.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="html/05-images.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="lists">Lists</h2>
+                <p>Two kinds: unordered (bullet points) and ordered (numbered). Both use <code>&lt;li&gt;</code> for
+                    list items inside them.</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Apples<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Bananas<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Cherries<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Boil water<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Add pasta<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Wait 10 minutes<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>&lt;ul&gt;</code> is "unordered list" — bullets. <code>&lt;ol&gt;</code> is "ordered list" —
+                    numbers. The browser handles the bullets and numbers automatically. You don't type them.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Notice the browser auto-numbers your <code>&lt;ol&gt;</code> items.
+                    </p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/06-lists.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="html/06-lists.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="forms-inputs">Forms &amp; Inputs</h2>
+                <p>Forms are how users give you information. A search bar, a login form, a checkout page — all forms.
+                </p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Enter your name"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"email"</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Enter email"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"password"</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Password"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"number"</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Your age"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"checkbox"</span><span class="p">&gt;</span> Remember me
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"radio"</span> <span class="na">name</span><span class="o">=</span><span class="s">"color"</span><span class="p">&gt;</span> Red
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"radio"</span> <span class="na">name</span><span class="o">=</span><span class="s">"color"</span><span class="p">&gt;</span> Blue
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"date"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"file"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Write a message..."</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">select</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">"js"</span><span class="p">&gt;</span>JavaScript<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">"py"</span><span class="p">&gt;</span>Python<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>type</code> tells the browser what kind of input. <code>type="password"</code> automatically
+                    hides the characters. <code>type="email"</code> validates email format on mobile.
+                    <code>placeholder</code> is that greyed-out hint text. For radio buttons, give them the same
+                    <code>name</code> — that's how the browser knows they're in the same group and only one can be
+                    selected.</p>
+                <p><code>&lt;textarea&gt;</code> is a multi-line text box. <code>&lt;select&gt;</code> is a dropdown.
+                    Both are their own elements, not <code>&lt;input&gt;</code>.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Notice how <code>type="password"</code> hides characters. Notice the
+                        date picker. Notice only one radio can be selected.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/07-forms.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="html/07-forms.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="div-and-span">div and span</h2>
+                <p><code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> are containers with no visual meaning on their
+                    own. They're blank boxes you use to group things and apply CSS to.</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"card"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Product Name<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Product description here.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The price is <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"price"</span><span class="p">&gt;</span>$9.99<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> today only.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The key difference: <code>&lt;div&gt;</code> is <strong>block-level</strong> — it takes up the full
+                    width and starts on a new line. <code>&lt;span&gt;</code> is <strong>inline</strong> — it sits
+                    inside text without breaking the line. Think of <code>&lt;div&gt;</code> as a box,
+                    <code>&lt;span&gt;</code> as a highlighter pen on a word.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Notice the div creates a visual block. The span changes just the word
+                        inside the paragraph.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/08-div-span.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="html/08-div-span.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="semantic-tags">Semantic Tags</h2>
+                <p>These are <code>&lt;div&gt;</code> alternatives that carry meaning. They work exactly the same way as
+                    a div — they're just containers. But their name tells the browser, search engines, and screen
+                    readers what role that section plays.</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"/"</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"/about"</span><span class="p">&gt;</span>About<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is the homepage.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Blog Post Title<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Post content here.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">aside</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Related links<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">aside</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>© 2024 My Website<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>&lt;header&gt;</code> — top of the page or a section. <code>&lt;nav&gt;</code> — navigation
+                    links. <code>&lt;main&gt;</code> — the main content. <code>&lt;section&gt;</code> — a grouped
+                    section of content. <code>&lt;article&gt;</code> — standalone content like a blog post or a card.
+                    <code>&lt;aside&gt;</code> — sidebar, supplementary content. <code>&lt;footer&gt;</code> — bottom of
+                    the page.</p>
+                <p>Google's crawler reads these to understand your page structure. A screen reader uses them to help a
+                    blind user navigate. Functionally identical to div — semantically far superior.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> The page looks the same as with divs. That's the point — the benefit
+                        is invisible to the eye, not the machine.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/09-semantic.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="html/09-semantic.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="html-attributes">HTML Attributes</h2>
+                <p>A quick reference of the most common attributes:</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html">id="uniqueName"     <span class="cm">&lt;!-- one element on the whole page — used in CSS (#id) and JS --&gt;</span>
+class="cardStyle"   <span class="cm">&lt;!-- shared across many elements — used in CSS (.class) --&gt;</span>
+href="..."          <span class="cm">&lt;!-- destination for links --&gt;</span>
+src="..."           <span class="cm">&lt;!-- file path for images and scripts --&gt;</span>
+alt="..."           <span class="cm">&lt;!-- fallback text for images --&gt;</span>
+placeholder="..."   <span class="cm">&lt;!-- hint text in inputs --&gt;</span>
+type="..."          <span class="cm">&lt;!-- input type: text, email, checkbox, etc. --&gt;</span>
+disabled            <span class="cm">&lt;!-- disables the element (no value needed) --&gt;</span>
+required            <span class="cm">&lt;!-- makes form field mandatory (no value needed) --&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>Run this.</strong> Add <code>disabled</code> to a button. Notice it becomes greyed out
+                        and unclickable.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="html/10-attributes.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="html/10-attributes.html">Download HTML</a></div>
+                <h2 id="-_1">---</h2>
+                <h1 id="part-2-css">PART 2 — CSS</h1>
+                <hr />
+                <h2 id="what-css-is">What CSS Is</h2>
+                <p>HTML gives you content. CSS gives you control over how it looks. CSS is a completely separate
+                    language — different syntax, different file, different job.</p>
+                <p>The fundamental concept of CSS is simple: you pick an element (or elements), and you describe how
+                    they should look.</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">blue</span><span class="p">;</span>
+<span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>"All paragraphs should have blue text and a font size of 20 pixels." That's it. That's CSS.</p>
+                <hr />
+                <h2 id="how-to-connect-css-to-html">How to Connect CSS to HTML</h2>
+                <p>Three ways. You should know all three, but use Option 1 in real projects.</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="cm">&lt;!-- Option 1: External file — keep CSS separate (recommended) --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="na">href</span><span class="o">=</span><span class="s">"styles.css"</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Option 2: Style tag inside &lt;head&gt; — fine for small experiments --&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">blue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Option 3: Inline — directly on the element. Avoid this. --&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">style</span><span class="o">=</span><span class="s">"color: blue;"</span><span class="p">&gt;</span>Text<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>Option 3 gets messy fast. If you have 50 paragraphs and want to change the color, you'd have to edit
+                    all 50. With Option 1, you change one file.</p>
+                <hr />
+                <h2 id="selectors">Selectors</h2>
+                <p>A selector is how CSS decides which elements to style.</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="c">/* By tag name — targets ALL paragraphs */</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">blue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* By class — targets everything with class="card" */</span>
+<span class="p">.</span><span class="nc">card</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* By id — targets the ONE element with id="title" */</span>
+<span class="p">#</span><span class="nn">title</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* Everything on the page */</span>
+<span class="o">*</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">box-sizing</span><span class="p">:</span><span class="w"> </span><span class="kc">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* Multiple selectors at once */</span>
+<span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">h3</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* Nested — only &lt;p&gt; tags INSIDE .card */</span>
+<span class="p">.</span><span class="nc">card</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">gray</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The difference between class and id: a class can be used on many elements, an id must be unique — one
+                    per page. Think of class as a category ("all employees"), id as a unique name badge ("only John
+                    Smith").</p>
+                <p>Hover and active are called <strong>pseudo-classes</strong> — they only apply under specific
+                    conditions:</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="nt">button</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">darkblue</span><span class="p">;</span><span class="w"> </span><span class="c">/* only when mouse is over the button */</span>
+<span class="p">}</span>
+<span class="nt">button</span><span class="p">:</span><span class="nd">active</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span><span class="w"> </span><span class="c">/* only while the button is being clicked */</span>
+<span class="p">}</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>Run this.</strong> Write <code>.card { background-color: lightyellow; }</code>. Apply it
+                        to two divs and watch both change.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/01-selectors.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="css/01-selectors.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="colors">Colors</h2>
+                <p>CSS has four ways to express color. They're all valid. Pick whichever you prefer.</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="c">/* 1. By name — simple, but limited to ~140 named colors */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">red</span><span class="o">;</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">white</span><span class="o">;</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">black</span><span class="o">;</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">transparent</span><span class="o">;</span>
+<span class="c">/* 2. RGB — Red, Green, Blue. Each value from 0 to 255 */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">rgb</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">);</span><span class="w"> </span><span class="c">/* pure red */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">rgb</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">);</span><span class="w"> </span><span class="c">/* pure blue */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">rgb</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">);</span><span class="w"> </span><span class="c">/* black */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">rgb</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">);</span><span class="w"> </span><span class="c">/* white */</span>
+<span class="c">/* 3. RGBA — same as RGB but with an Alpha (transparency) value from 0 to 1 */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">5</span><span class="o">);</span><span class="w"> </span><span class="c">/* red, 50% transparent */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">2</span><span class="o">);</span><span class="w"> </span><span class="c">/* very faint black overlay */</span>
+<span class="c">/* 4. Hex — same as RGB, just written in base-16 shorthand */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">FF0000</span><span class="o">;</span><span class="w"> </span><span class="c">/* red */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">000000</span><span class="o">;</span><span class="w"> </span><span class="c">/* black */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">FFFFFF</span><span class="o">;</span><span class="w"> </span><span class="c">/* white */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0096FF</span><span class="o">;</span><span class="w"> </span><span class="c">/* a nice blue */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>RGBA is especially useful for overlays, shadows, and subtle backgrounds. When you want a faint shadow
+                    that blends with any background color, <code>rgba(0,0,0,0.2)</code> — a 20% opaque black — works on
+                    everything.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Create 4 divs with the same red expressed four different ways. They
+                        should all look identical.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/02-colors.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="css/02-colors.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="backgrounds">Backgrounds</h2>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="c">/* Solid color */</span>
+<span class="nt">background-color</span><span class="o">:</span><span class="w"> </span><span class="nt">red</span><span class="o">;</span>
+<span class="nt">background-color</span><span class="o">:</span><span class="w"> </span><span class="nt">rgb</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">150</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">);</span>
+<span class="nt">background-color</span><span class="o">:</span><span class="w"> </span><span class="nt">transparent</span><span class="o">;</span>
+<span class="c">/* Image */</span>
+<span class="nt">background-image</span><span class="o">:</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s2">"photo.jpg"</span><span class="o">);</span>
+<span class="nt">background-size</span><span class="o">:</span><span class="w"> </span><span class="nt">cover</span><span class="o">;</span><span class="w"> </span><span class="c">/* fill the container, crop if needed */</span>
+<span class="nt">background-size</span><span class="o">:</span><span class="w"> </span><span class="nt">contain</span><span class="o">;</span><span class="w"> </span><span class="c">/* fit the image inside, may leave gaps */</span>
+<span class="nt">background-size</span><span class="o">:</span><span class="w"> </span><span class="nt">100</span><span class="o">%</span><span class="w"> </span><span class="nt">100</span><span class="o">%;</span><span class="w"> </span><span class="c">/* stretch to fill, may distort */</span>
+<span class="nt">background-position</span><span class="o">:</span><span class="w"> </span><span class="nt">center</span><span class="o">;</span><span class="w"> </span><span class="c">/* center the image in the container */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>background-size: cover</code> is the one you'll use 90% of the time for hero images and card
+                    backgrounds. It fills the space and crops intelligently. Think of it like fitting a photo into a
+                    frame — the photo fills the frame, and the edges get cut if needed.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Give a <code>&lt;div&gt;</code> a fixed width and height, set
+                        <code>background-image</code> and <code>background-size: cover</code>. Try changing to
+                        <code>contain</code>. See the difference.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/02-colors.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="css/02-colors.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="text-fonts">Text &amp; Fonts</h2>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="c">/* Font family — browser tries each one in order, uses first available */</span>
+<span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="nt">Arial</span><span class="o">;</span>
+<span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="nt">Roboto</span><span class="o">,</span><span class="w"> </span><span class="nt">Arial</span><span class="o">,</span><span class="w"> </span><span class="nt">sans-serif</span><span class="o">;</span>
+<span class="c">/* Size */</span>
+<span class="nt">font-size</span><span class="o">:</span><span class="w"> </span><span class="nt">16px</span><span class="o">;</span>
+<span class="c">/* Weight */</span>
+<span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span><span class="w"> </span><span class="c">/* regular text */</span>
+<span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">bold</span><span class="o">;</span><span class="w"> </span><span class="c">/* bold text */</span>
+<span class="c">/* Style */</span>
+<span class="nt">font-style</span><span class="o">:</span><span class="w"> </span><span class="nt">italic</span><span class="o">;</span>
+<span class="c">/* Color */</span>
+<span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="nt">black</span><span class="o">;</span>
+<span class="c">/* Alignment */</span>
+<span class="nt">text-align</span><span class="o">:</span><span class="w"> </span><span class="nt">left</span><span class="o">;</span>
+<span class="nt">text-align</span><span class="o">:</span><span class="w"> </span><span class="nt">center</span><span class="o">;</span>
+<span class="nt">text-align</span><span class="o">:</span><span class="w"> </span><span class="nt">right</span><span class="o">;</span>
+<span class="nt">text-align</span><span class="o">:</span><span class="w"> </span><span class="nt">justify</span><span class="o">;</span>
+<span class="c">/* Decoration */</span>
+<span class="nt">text-decoration</span><span class="o">:</span><span class="w"> </span><span class="nt">none</span><span class="o">;</span><span class="w"> </span><span class="c">/* removes underline — useful on links */</span>
+<span class="nt">text-decoration</span><span class="o">:</span><span class="w"> </span><span class="nt">underline</span><span class="o">;</span>
+<span class="nt">text-decoration</span><span class="o">:</span><span class="w"> </span><span class="nt">line-through</span><span class="o">;</span><span class="w"> </span><span class="c">/* strikethrough */</span>
+<span class="c">/* Transform */</span>
+<span class="nt">text-transform</span><span class="o">:</span><span class="w"> </span><span class="nt">uppercase</span><span class="o">;</span>
+<span class="nt">text-transform</span><span class="o">:</span><span class="w"> </span><span class="nt">lowercase</span><span class="o">;</span>
+<span class="nt">text-transform</span><span class="o">:</span><span class="w"> </span><span class="nt">capitalize</span><span class="o">;</span><span class="w"> </span><span class="c">/* capitalizes first letter of each word */</span>
+<span class="c">/* Spacing */</span>
+<span class="nt">line-height</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="p">.</span><span class="nc">5</span><span class="o">;</span><span class="w"> </span><span class="c">/* 1.5x the font-size — good for readability */</span>
+<span class="nt">letter-spacing</span><span class="o">:</span><span class="w"> </span><span class="nt">2px</span><span class="o">;</span><span class="w"> </span><span class="c">/* space between each character */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>font-family</code> with multiple values is called a font stack. The browser tries "Roboto"
+                    first. If that's not installed, it falls back to "Arial". If that's not available, it uses any
+                    generic <code>sans-serif</code> font. This is a safety net.</p>
+                <p><code>text-decoration: none</code> is something you'll write constantly — by default,
+                    <code>&lt;a&gt;</code> tags have an underline. Most designs don't want it. You remove it with this.
+                </p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Try <code>text-transform: uppercase</code> on a heading — notice you
+                        didn't change the HTML, just how it displays.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/04-typography.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="css/04-typography.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="sizing">Sizing</h2>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="c">/* Width */</span>
+<span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">200px</span><span class="o">;</span><span class="w"> </span><span class="c">/* fixed — always 200px regardless of screen */</span>
+<span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">50</span><span class="o">%;</span><span class="w"> </span><span class="c">/* relative — 50% of the parent container's width */</span>
+<span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">100vw</span><span class="o">;</span><span class="w"> </span><span class="c">/* 100% of the viewport (screen) width */</span>
+<span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">100px</span><span class="o">;</span><span class="w"> </span><span class="c">/* never smaller than this */</span>
+<span class="nt">max-width</span><span class="o">:</span><span class="w"> </span><span class="nt">600px</span><span class="o">;</span><span class="w"> </span><span class="c">/* never larger than this */</span>
+<span class="c">/* Height */</span>
+<span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">100px</span><span class="o">;</span>
+<span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">100vh</span><span class="o">;</span><span class="w"> </span><span class="c">/* 100% of the viewport height */</span>
+<span class="nt">min-height</span><span class="o">:</span><span class="w"> </span><span class="nt">200px</span><span class="o">;</span>
+<span class="nt">max-height</span><span class="o">:</span><span class="w"> </span><span class="nt">500px</span><span class="o">;</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>px</code> is pixels — exact, fixed. <code>%</code> is relative to the parent. <code>vw</code>
+                    and <code>vh</code> are relative to the browser window itself. A div with
+                    <code>width: 100vw; height: 100vh</code> takes up the entire screen — useful for full-screen hero
+                    sections.</p>
+                <p><code>max-width</code> is something you'll use constantly. Set <code>max-width: 1200px</code> on a
+                    container and it'll never stretch wider than 1200px on huge monitors, but it'll shrink fine on
+                    smaller screens.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Set <code>width: 100%</code> on a div inside another div. Then set
+                        <code>max-width: 400px</code>. Resize the browser window.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/03-box-model.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="css/03-box-model.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="box-model">Box Model</h2>
+                <p>This is one of the most important concepts in CSS. Every single element on a page — every button,
+                    div, paragraph — is a rectangle. And that rectangle has four layers:</p>
+                <ol>
+                    <li><strong>Content</strong> — the actual text or image</li>
+                    <li><strong>Padding</strong> — breathing room inside the element, between content and border</li>
+                    <li><strong>Border</strong> — the outline</li>
+                    <li><strong>Margin</strong> — space outside the element, pushing other elements away</li>
+                </ol>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="c">/* Padding: space INSIDE — order is top, right, bottom, left */</span>
+<span class="nt">padding</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="w"> </span><span class="nt">20px</span><span class="w"> </span><span class="nt">30px</span><span class="w"> </span><span class="nt">40px</span><span class="o">;</span>
+<span class="nt">padding-top</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="o">;</span>
+<span class="nt">padding-right</span><span class="o">:</span><span class="w"> </span><span class="nt">20px</span><span class="o">;</span>
+<span class="nt">padding-bottom</span><span class="o">:</span><span class="w"> </span><span class="nt">30px</span><span class="o">;</span>
+<span class="nt">padding-left</span><span class="o">:</span><span class="w"> </span><span class="nt">40px</span><span class="o">;</span>
+<span class="c">/* Margin: space OUTSIDE */</span>
+<span class="nt">margin</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="w"> </span><span class="nt">20px</span><span class="w"> </span><span class="nt">30px</span><span class="w"> </span><span class="nt">40px</span><span class="o">;</span>
+<span class="nt">margin-top</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="o">;</span>
+<span class="nt">margin-right</span><span class="o">:</span><span class="w"> </span><span class="nt">20px</span><span class="o">;</span>
+<span class="nt">margin-bottom</span><span class="o">:</span><span class="w"> </span><span class="nt">30px</span><span class="o">;</span>
+<span class="nt">margin-left</span><span class="o">:</span><span class="w"> </span><span class="nt">40px</span><span class="o">;</span>
+<span class="nt">margin</span><span class="o">:</span><span class="w"> </span><span class="nt">auto</span><span class="o">;</span><span class="w"> </span><span class="c">/* centers the element horizontally */</span>
+<span class="c">/* Border — shorthand: width, style, color */</span>
+<span class="nt">border</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">black</span><span class="o">;</span>
+<span class="nt">border</span><span class="o">:</span><span class="w"> </span><span class="nt">2px</span><span class="w"> </span><span class="nt">dashed</span><span class="w"> </span><span class="nt">red</span><span class="o">;</span>
+<span class="nt">border</span><span class="o">:</span><span class="w"> </span><span class="nt">none</span><span class="o">;</span>
+<span class="c">/* Rounded corners */</span>
+<span class="nt">border-radius</span><span class="o">:</span><span class="w"> </span><span class="nt">5px</span><span class="o">;</span><span class="w"> </span><span class="c">/* slightly rounded */</span>
+<span class="nt">border-radius</span><span class="o">:</span><span class="w"> </span><span class="nt">50</span><span class="o">%;</span><span class="w"> </span><span class="c">/* perfect circle — only if width equals height */</span>
+<span class="c">/* CRITICAL: box-sizing */</span>
+<span class="nt">box-sizing</span><span class="o">:</span><span class="w"> </span><span class="nt">border-box</span><span class="o">;</span><span class="w"> </span><span class="c">/* padding is INCLUDED in the stated width */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>Here's the trap beginners fall into. You set <code>width: 200px</code> on a div. Then you add
+                    <code>padding: 20px</code>. Suddenly the element is 240px wide. That's the default behavior —
+                    padding is added <em>on top of</em> the width. <code>box-sizing: border-box</code> fixes this: the
+                    padding is counted <em>within</em> the 200px. Put this on every element at the top of every CSS
+                    file:</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="o">*</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">box-sizing</span><span class="p">:</span><span class="w"> </span><span class="kc">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>Run this.</strong> Create two identical divs, same width and padding. Add
+                        <code>box-sizing: border-box</code> to only one. See the size difference.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/03-box-model.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="css/03-box-model.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="display">Display</h2>
+                <p>Every HTML element has a default display value. Changing it is one of the most powerful things you
+                    can do in CSS.</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="nt">display</span><span class="o">:</span><span class="w"> </span><span class="nt">block</span><span class="o">;</span><span class="w"> </span><span class="c">/* takes up full width, starts on a new line (div, p, h1) */</span>
+<span class="nt">display</span><span class="o">:</span><span class="w"> </span><span class="nt">inline</span><span class="o">;</span><span class="w"> </span><span class="c">/* sits inside text, no width/height control (span, a) */</span>
+<span class="nt">display</span><span class="o">:</span><span class="w"> </span><span class="nt">inline-block</span><span class="o">;</span><span class="w"> </span><span class="c">/* inline BUT you can set width and height */</span>
+<span class="nt">display</span><span class="o">:</span><span class="w"> </span><span class="nt">none</span><span class="o">;</span><span class="w"> </span><span class="c">/* element is completely gone — not just invisible */</span>
+<span class="nt">display</span><span class="o">:</span><span class="w"> </span><span class="nt">flex</span><span class="o">;</span><span class="w"> </span><span class="c">/* flexbox — covered next */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The difference between <code>display: none</code> and <code>opacity: 0</code> is important:
+                    - <code>display: none</code> — element is removed from the page entirely, other elements fill its
+                    space
+                    - <code>opacity: 0</code> — element is invisible but still takes up space, like a ghost</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Add <code>display: none</code> to a div in the middle of three divs.
+                        Watch the surrounding elements close the gap.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/05-flexbox-basics.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="css/05-flexbox-basics.html">Download HTML</a></div>
+                <hr />
+                <h2 id="opacity">Opacity</h2>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="nt">opacity</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="o">;</span><span class="w"> </span><span class="c">/* fully visible — default */</span>
+<span class="nt">opacity</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">5</span><span class="o">;</span><span class="w"> </span><span class="c">/* 50% transparent */</span>
+<span class="nt">opacity</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span><span class="w"> </span><span class="c">/* invisible but still takes up space */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>opacity</code> affects the entire element including its children. If you want only the
+                    background to be transparent, use <code>rgba()</code> on the background color instead of opacity.
+                </p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Set a button to <code>opacity: 0.3</code>. Notice it's faded but still
+                        clickable and still takes up space.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/10-hover-transitions.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="css/10-hover-transitions.html">Download HTML</a></div>
+                <hr />
+                <h2 id="flexbox">Flexbox</h2>
+                <p>Before flexbox, centering something vertically in CSS was a notoriously annoying problem. Flexbox
+                    solved it. Flexbox is a layout system — you apply it to a container and it controls how its children
+                    are arranged.</p>
+                <p>The mental model: you have a container, and inside it you have items. Flexbox lets you control how
+                    those items are distributed along two axes — the main axis (by default, horizontal) and the cross
+                    axis (vertical).</p>
+                <p>Apply to the <strong>container</strong>:</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="nt">display</span><span class="o">:</span><span class="w"> </span><span class="nt">flex</span><span class="o">;</span>
+<span class="c">/* Direction — which way items flow */</span>
+<span class="nt">flex-direction</span><span class="o">:</span><span class="w"> </span><span class="nt">row</span><span class="o">;</span><span class="w"> </span><span class="c">/* left to right — default */</span>
+<span class="nt">flex-direction</span><span class="o">:</span><span class="w"> </span><span class="nt">row-reverse</span><span class="o">;</span><span class="w"> </span><span class="c">/* right to left */</span>
+<span class="nt">flex-direction</span><span class="o">:</span><span class="w"> </span><span class="nt">column</span><span class="o">;</span><span class="w"> </span><span class="c">/* top to bottom */</span>
+<span class="nt">flex-direction</span><span class="o">:</span><span class="w"> </span><span class="nt">column-reverse</span><span class="o">;</span><span class="c">/* bottom to top */</span>
+<span class="c">/* Justify-content — alignment along the MAIN axis */</span>
+<span class="nt">justify-content</span><span class="o">:</span><span class="w"> </span><span class="nt">flex-start</span><span class="o">;</span><span class="w"> </span><span class="c">/* pack items to the start — default */</span>
+<span class="nt">justify-content</span><span class="o">:</span><span class="w"> </span><span class="nt">flex-end</span><span class="o">;</span><span class="w"> </span><span class="c">/* pack items to the end */</span>
+<span class="nt">justify-content</span><span class="o">:</span><span class="w"> </span><span class="nt">center</span><span class="o">;</span><span class="w"> </span><span class="c">/* center all items */</span>
+<span class="nt">justify-content</span><span class="o">:</span><span class="w"> </span><span class="nt">space-between</span><span class="o">;</span><span class="c">/* equal gaps between items, none on edges */</span>
+<span class="nt">justify-content</span><span class="o">:</span><span class="w"> </span><span class="nt">space-around</span><span class="o">;</span><span class="w"> </span><span class="c">/* equal space around each item */</span>
+<span class="nt">justify-content</span><span class="o">:</span><span class="w"> </span><span class="nt">space-evenly</span><span class="o">;</span><span class="w"> </span><span class="c">/* perfectly equal space everywhere */</span>
+<span class="c">/* Align-items — alignment along the CROSS axis */</span>
+<span class="nt">align-items</span><span class="o">:</span><span class="w"> </span><span class="nt">stretch</span><span class="o">;</span><span class="w"> </span><span class="c">/* items stretch to fill height — default */</span>
+<span class="nt">align-items</span><span class="o">:</span><span class="w"> </span><span class="nt">flex-start</span><span class="o">;</span><span class="w"> </span><span class="c">/* items align to top */</span>
+<span class="nt">align-items</span><span class="o">:</span><span class="w"> </span><span class="nt">flex-end</span><span class="o">;</span><span class="w"> </span><span class="c">/* items align to bottom */</span>
+<span class="nt">align-items</span><span class="o">:</span><span class="w"> </span><span class="nt">center</span><span class="o">;</span><span class="w"> </span><span class="c">/* items vertically centered */</span>
+<span class="c">/* Gap between items */</span>
+<span class="nt">gap</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="o">;</span>
+<span class="nt">gap</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="w"> </span><span class="nt">20px</span><span class="o">;</span><span class="w"> </span><span class="c">/* row-gap | column-gap */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>Apply to the <strong>children</strong> (flex items):</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="nt">flex</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="o">;</span><span class="w"> </span><span class="c">/* take up equal share of remaining space */</span>
+<span class="nt">flex</span><span class="o">:</span><span class="w"> </span><span class="nt">2</span><span class="o">;</span><span class="w"> </span><span class="c">/* take up twice the space of an item with flex: 1 */</span>
+<span class="nt">flex-shrink</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span><span class="w"> </span><span class="c">/* don't shrink even if container is too small */</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>Run this.</strong> Three divs inside a container. Add <code>display: flex</code>. Try
+                        every <code>justify-content</code> value. Then try <code>align-items: center</code> with a fixed
+                        <code>height</code> on the container. That's how you vertically center things.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/05-flexbox-basics.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="css/05-flexbox-basics.html">Download HTML</a></div>
+                <hr />
+                <h2 id="position">Position</h2>
+                <p>By default, elements just stack vertically, top to bottom. Position lets you break out of that.</p>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">static</span><span class="o">;</span><span class="w"> </span><span class="c">/* default — element is in normal flow, ignores top/left/etc */</span>
+<span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">relative</span><span class="o">;</span><span class="w"> </span><span class="c">/* element stays in normal flow, BUT you can nudge it */</span>
+<span class="nt">top</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="o">;</span><span class="w"> </span><span class="c">/* pushes it 10px down from where it would naturally be */</span>
+<span class="nt">left</span><span class="o">:</span><span class="w"> </span><span class="nt">20px</span><span class="o">;</span><span class="w"> </span><span class="c">/* pushes it 20px right */</span>
+<span class="c">/* NOTE: the space it originally occupied is still reserved */</span>
+<span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">absolute</span><span class="o">;</span><span class="w"> </span><span class="c">/* removed from normal flow entirely */</span>
+<span class="w"> </span><span class="c">/* positioned relative to the nearest parent that has</span>
+<span class="c">                        a non-static position (usually position: relative) */</span>
+<span class="nt">top</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
+<span class="nt">right</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
+<span class="c">/* Use this for: tooltips, badges, overlay buttons, dropdowns */</span>
+<span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">fixed</span><span class="o">;</span><span class="w"> </span><span class="c">/* like absolute but anchored to the browser WINDOW */</span>
+<span class="w"> </span><span class="c">/* it doesn't scroll — it stays put */</span>
+<span class="nt">top</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
+<span class="nt">left</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
+<span class="c">/* Use this for: sticky navigation bars, floating chat buttons */</span>
+<span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">sticky</span><span class="o">;</span><span class="w"> </span><span class="c">/* hybrid — acts like relative while scrolling normally,</span>
+<span class="c">                        then "sticks" once it hits the threshold you set */</span>
+<span class="nt">top</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
+<span class="c">/* Use this for: table headers, section headings that stick while in view */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The most important pattern: if you want to position something <strong>inside</strong> a parent
+                    element (a badge on a card, a close button in a modal), set <code>position: relative</code> on the
+                    parent and <code>position: absolute</code> on the child.</p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">"position: relative; width: 200px; height: 200px; background: lightblue;"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">"position: absolute; top: 5px; right: 5px; background: red; color: white; padding: 2px 6px;"</span><span class="p">&gt;</span>
+    NEW
+  <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  Card content
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>Run this.</strong> The badge sticks to the top-right corner of the card regardless of
+                        content. Try removing <code>position: relative</code> from the parent — the badge escapes to the
+                        page corner.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/09-positioning.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="css/09-positioning.html">Download HTML</a></div>
+                <hr />
+                <h2 id="shadow-cursor">Shadow &amp; Cursor</h2>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="c">/* Box shadow: horizontal-offset vertical-offset blur color */</span>
+<span class="nt">box-shadow</span><span class="o">:</span><span class="w"> </span><span class="nt">2px</span><span class="w"> </span><span class="nt">4px</span><span class="w"> </span><span class="nt">8px</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">2</span><span class="o">);</span>
+<span class="c">/* 2px right, 4px down, 8px blur, 20% transparent black */</span>
+<span class="nt">cursor</span><span class="o">:</span><span class="w"> </span><span class="nt">pointer</span><span class="o">;</span><span class="w"> </span><span class="c">/* shows the hand icon — always add this to custom clickable elements */</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The hand cursor is important for UX. When users hover over something clickable, they expect to see a
+                    hand. Buttons have it by default. Divs and spans you make clickable with JavaScript don't — you have
+                    to add it manually.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Create a card with <code>box-shadow</code>. Then try removing the blur
+                        (<code>0</code> instead of <code>8px</code>) for a hard shadow effect.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/10-hover-transitions.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="css/10-hover-transitions.html">Download HTML</a></div>
+                <h2 id="-_2">---</h2>
+                <h1 id="part-3-javascript">PART 3 — JAVASCRIPT</h1>
+                <hr />
+                <h2 id="what-javascript-is">What JavaScript Is</h2>
+                <p>You know Java. JavaScript is not Java. The name was a marketing decision from 1995. They share curly
+                    braces and some syntax, but they're different languages with different purposes.</p>
+                <p>JavaScript is the only programming language that runs natively in browsers. Every browser — Chrome,
+                    Firefox, Safari — has a JavaScript engine built in. V8 in Chrome. SpiderMonkey in Firefox. These
+                    engines compile your JavaScript to machine code and execute it.</p>
+                <p>JavaScript was originally just for small page interactions. Today it runs servers (Node.js), mobile
+                    apps, desktop apps, and machine learning models. But in this workshop, we care about one thing:
+                    making web pages interactive.</p>
+                <hr />
+                <h2 id="variables">Variables</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">let</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Alice"</span><span class="p">;</span><span class="w"> </span><span class="c1">// can be reassigned later</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span><span class="w"> </span><span class="c1">// cannot be reassigned — throws an error if you try</span>
+<span class="c1">// Data types</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">42</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hello"</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// boolean</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">nothing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="c1">// explicitly nothing</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">notDefined</span><span class="p">;</span><span class="w"> </span><span class="c1">// undefined — declared but no value yet</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>let</code> vs <code>const</code> — use <code>const</code> by default. Only switch to
+                    <code>let</code> when you know you'll need to reassign. This is a habit that prevents bugs. If you
+                    try to reassign a <code>const</code>, JavaScript will throw an error immediately, which is exactly
+                    what you want — it means you made a mistake.</p>
+                <p>Don't use <code>var</code>. It's the old way and has weird scoping rules. Forget it exists.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Open the browser console (F12). Type <code>const x = 5; x = 10;</code>
+                        — watch it throw an error.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/01-variables.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="js/01-variables.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="strings">Strings</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">let</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Alice"</span><span class="p">;</span>
+<span class="c1">// Template literal — the modern, clean way to build strings</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, welcome!`</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">math</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Two plus two is </span><span class="si">${</span><span class="mf">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="c1">// Methods</span>
+<span class="nx">name</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="c1">// 5 — number of characters</span>
+<span class="nx">name</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="w"> </span><span class="c1">// "ALICE"</span>
+<span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"lic"</span><span class="p">)</span><span class="w"> </span><span class="c1">// true — does the string contain "lic"?</span>
+<span class="nx">name</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="c1">// removes whitespace from start and end</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>Template literals use backticks (<code>`</code>), not quotes. The <code>${}</code> syntax lets you
+                    embed any JavaScript expression — a variable, a calculation, a function call. This replaces
+                    <code>"Hello " + name + "!"</code> which is verbose and error-prone.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> <code>let price = 9.99; console.log(</code>Price is
+                        $${price}<code>);</code></p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/03-strings.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="js/03-strings.html">Download
+                        HTML</a></div>
+                <hr>
+                <h2 id="numbers">Numbers</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="c1">// 13</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="c1">// 7</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="c1">// 30</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="c1">// 3.333...</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="c1">// 1  — remainder (modulo) — "10 divided by 3 leaves 1 over"</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="c1">// 1000 — power: 10 to the 3rd</span>
+<span class="c1">// Math object — built-in math utilities</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">4.6</span><span class="p">)</span><span class="w"> </span><span class="c1">// 5 — rounds to nearest integer</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">4.9</span><span class="p">)</span><span class="w"> </span><span class="c1">// 4 — always rounds DOWN</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">4.1</span><span class="p">)</span><span class="w"> </span><span class="c1">// 5 — always rounds UP</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="o">-</span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="c1">// 5 — absolute value</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="c1">// 5 — largest value</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1 — smallest value</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="c1">// random decimal between 0 and 1</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>Math.random()</code> is very commonly used. To get a random integer from 0 to 9:
+                    <code>Math.floor(Math.random() * 10)</code>.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> <code>console.log(Math.floor(Math.random() * 100))</code> — run it
+                        several times. Different number each time.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/04-numbers-math.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="js/04-numbers-math.html">Download HTML</a></div>
+                <hr>
+                <h2 id="booleans-comparison">Booleans &amp; Comparison</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="c1">// Always use === (strict equality — checks value AND type)</span>
+<span class="mf">5</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="c1">// true</span>
+<span class="mf">5</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"5"</span><span class="w"> </span><span class="c1">// false — number vs string</span>
+<span class="mf">5</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="c1">// true — not equal</span>
+<span class="mf">5</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="c1">// true</span>
+<span class="mf">5</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="c1">// false</span>
+<span class="mf">5</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="c1">// true</span>
+<span class="mf">5</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="c1">// false</span>
+<span class="c1">// Logical operators — same as Java</span>
+<span class="kc">true</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// AND — both must be true</span>
+<span class="kc">true</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="c1">// OR — at least one must be true</span>
+<span class="o">!</span><span class="kc">true</span><span class="w"> </span><span class="c1">// NOT — flips it: false</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>Use <code>===</code> not <code>==</code>. The double equals <code>==</code> does type coercion —
+                    JavaScript tries to convert types to make things equal, which leads to bizarre bugs like
+                    <code>0 == false</code> being <code>true</code>. <code>===</code> is strict: same value AND same
+                    type. Always.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> <code>console.log(0 == false)</code> then
+                        <code>console.log(0 === false)</code>. One is true, one is false. This is why we use
+                        <code>===</code>.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/02-data-types.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="js/02-data-types.html">Download
+                        HTML</a></div>
+                <hr>
+                <h2 id="conditionals">Conditionals</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">let</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Adult"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">13</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Teenager"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Child"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Ternary — shorthand for a simple if/else in one line</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">"Adult"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">"Minor"</span><span class="p">;</span>
+<span class="c1">// reads as: "if age &gt;= 18, label is Adult, otherwise label is Minor"</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The ternary operator is useful when you want to assign a value based on a condition. It's not for
+                    complex logic — keep it simple, one condition.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Change the <code>age</code> value. Watch the output change.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/05-if-statements.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="js/05-if-statements.html">Download HTML</a></div>
+                <hr>
+                <h2 id="loops">Loops</h2>
+                <p>You know these from Java. The syntax is identical.</p>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="c1">// Classic for loop</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0, 1, 2, 3, 4</span>
+<span class="p">}</span>
+<span class="c1">// While loop</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// For...of — cleaner way to loop over an array</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">fruits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span><span class="w"> </span><span class="s2">"banana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cherry"</span><span class="p">];</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">fruit</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">fruits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruit</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>for...of</code> is the one you'll use most in practice. It gives you each <em>value</em> in the
+                    array directly. No index to manage, no length to check.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Loop from 1 to 10 and log whether each number is odd or even using
+                        <code>% 2</code>.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/08-loops.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="js/08-loops.html">Download HTML</a>
+                </div>
+                <hr />
+                <h2 id="functions">Functions</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="c1">// Function declaration — hoisted, can be called before it's defined</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Arrow function — modern syntax, preferred in almost all cases</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">greet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="c1">// Arrow shorthand — if the body is a single expression, drop the braces and return</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">greet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="c1">// Default parameter — if no argument is passed, use this default</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">greet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"stranger"</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="c1">// Multiple parameters</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="c1">// No parameters</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">sayHi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hi!"</span><span class="p">);</span>
+<span class="c1">// Calling functions</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">(</span><span class="s2">"Alice"</span><span class="p">));</span><span class="w"> </span><span class="c1">// "Hello Alice"</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">());</span><span class="w"> </span><span class="c1">// "Hello stranger"</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>Arrow functions are not just shorter syntax. They also handle <code>this</code> differently from
+                    regular functions — which matters when working with the DOM. For now, just know: arrow functions are
+                    the default choice in modern JavaScript.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Write a function <code>multiply(a, b)</code> that returns
+                        <code>a * b</code>. Call it with several values.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/06-functions.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="js/06-functions.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="arrays">Arrays</h2>
+                <p>An array is an ordered list of values. In JavaScript, one array can hold mixed types — numbers,
+                    strings, objects, other arrays. You'll mostly use them with one type at a time.</p>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">let</span><span class="w"> </span><span class="nx">fruits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span><span class="w"> </span><span class="s2">"banana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cherry"</span><span class="p">];</span>
+<span class="c1">// Access by index — zero-based</span>
+<span class="nx">fruits</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="c1">// "apple"</span>
+<span class="nx">fruits</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span><span class="w"> </span><span class="c1">// "cherry"</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="c1">// 3</span>
+<span class="c1">// Add and remove</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"mango"</span><span class="p">)</span><span class="w"> </span><span class="c1">// add to the END — returns new length</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span><span class="w"> </span><span class="c1">// remove from the END — returns removed item</span>
+<span class="c1">// Check</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">"banana"</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1 — returns index, or -1 if not found</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"cherry"</span><span class="p">)</span><span class="w"> </span><span class="c1">// true</span>
+<span class="c1">// Convert</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span><span class="w"> </span><span class="c1">// "apple, banana, cherry" — array to string</span>
+<span class="c1">// Iterate</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">fruit</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruit</span><span class="p">))</span><span class="w"> </span><span class="c1">// runs a function on each item</span>
+<span class="c1">// Transform — returns a NEW array</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">fruit</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fruit</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span><span class="w"> </span><span class="c1">// ["APPLE", "BANANA", "CHERRY"]</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">fruit</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fruit</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="c1">// ["banana", "cherry"]</span>
+<span class="c1">// Copy</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">copy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">fruits</span><span class="p">];</span><span class="w"> </span><span class="c1">// spread operator — creates a shallow copy</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>map</code> and <code>filter</code> are the most important array methods. <code>map</code>
+                    transforms every item — same length, different values. <code>filter</code> removes items that don't
+                    match — shorter array, same type of values.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> <code>[1, 2, 3, 4, 5].filter(n =&gt; n % 2 === 0)</code> — gives you
+                        only even numbers. Then <code>.map(n =&gt; n * 10)</code> on the result.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/07-arrays.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="js/07-arrays.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="objects">Objects</h2>
+                <p>An object is a collection of key-value pairs. If an array is a list, an object is a record. Think of
+                    it like a row in a database: one entity with multiple properties.</p>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">let</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="p">,</span>
+<span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span>
+<span class="w"> </span><span class="nx">isStudent</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w"> </span><span class="nx">greet</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s2">"Hi, I'm "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="c1">// Read properties</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="c1">// "Alice" — dot notation</span>
+<span class="nx">person</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span><span class="w"> </span><span class="c1">// "Alice" — bracket notation (useful for dynamic keys)</span>
+<span class="c1">// Set or add properties</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="p">;</span><span class="w"> </span><span class="c1">// creates a new property if it doesn't exist</span>
+<span class="c1">// Check if a key exists</span>
+<span class="s2">"name"</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="c1">// true</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>this</code> inside a method refers to the object itself. <code>this.name</code> inside
+                    <code>greet()</code> means "the name property of this same object." This is how objects have their
+                    own context.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Create an object for a car: make, model, year. Add a method
+                        <code>describe()</code> that returns a string describing the car.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/09-objects.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="js/09-objects.html">Download
+                        HTML</a></div>
+                <hr />
+                <h2 id="console">console</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)</span><span class="w"> </span><span class="c1">// print anything to the browser console</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myVariable</span><span class="p">)</span><span class="w"> </span><span class="c1">// inspect a variable</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"oh no"</span><span class="p">)</span><span class="w"> </span><span class="c1">// shows in red — use for errors</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s2">"be careful"</span><span class="p">)</span><span class="w"> </span><span class="c1">// shows in yellow — use for warnings</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The browser console (F12 → Console) is your best friend when debugging. When something doesn't work,
+                    <code>console.log</code> everything. Check what value a variable actually has at that moment.</p>
+                <h2 id="-_3">---</h2>
+                <h1 id="part-4-the-dom">PART 4 — THE DOM</h1>
+                <hr />
+                <h2 id="what-the-dom-is">What the DOM Is</h2>
+                <p>When the browser loads your HTML file, it doesn't just display it. It parses it — reads it character
+                    by character — and builds a tree of objects in memory. That tree is the DOM: the Document Object
+                    Model.</p>
+                <p>Every element in your HTML becomes an object in that tree. The <code>&lt;body&gt;</code> is an
+                    object. The <code>&lt;h1&gt;</code> inside it is an object. The text inside the
+                    <code>&lt;h1&gt;</code> is an object. They're all linked — parents, children, siblings.</p>
+                <p>JavaScript has access to this tree through a global object called <code>document</code>.
+                    <code>document</code> is the entry point to your entire page. When you say
+                    <code>document.querySelector("h1")</code>, you're asking JavaScript to walk into that tree and find
+                    the first <code>&lt;h1&gt;</code> object and give it to you.</p>
+                <p>Once you have that object, you can read it, change it, delete it, or create new ones. That's how
+                    interactivity works. A click happens → JavaScript runs → JavaScript changes the DOM → the browser
+                    re-renders the changed part.</p>
+                <hr />
+                <h2 id="selecting-elements">Selecting Elements</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="c1">// querySelector — returns the FIRST matching element (or null if none found)</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"p"</span><span class="p">)</span><span class="w"> </span><span class="c1">// first &lt;p&gt; on the page</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".card"</span><span class="p">)</span><span class="w"> </span><span class="c1">// first element with class="card"</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#title"</span><span class="p">)</span><span class="w"> </span><span class="c1">// the element with id="title"</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".card p"</span><span class="p">)</span><span class="w"> </span><span class="c1">// first &lt;p&gt; inside a .card</span>
+<span class="c1">// querySelectorAll — returns ALL matching elements as a NodeList</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"p"</span><span class="p">)</span><span class="w"> </span><span class="c1">// every &lt;p&gt;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".card"</span><span class="p">)</span><span class="w"> </span><span class="c1">// every .card</span>
+<span class="c1">// Iterating over querySelectorAll results</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"li"</span><span class="p">).</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>querySelector</code> uses the exact same syntax as CSS selectors. If you know CSS selectors,
+                    you already know how to select DOM elements.</p>
+                <p><code>querySelectorAll</code> returns a NodeList — it looks like an array and you can loop over it
+                    with <code>forEach</code>, but it's not quite a full array. Calling <code>.forEach()</code> on it
+                    works. <code>.map()</code> does not without converting first.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> <code>console.log(document.querySelector("h1"))</code> — see the
+                        element object in the console. Expand it.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/02-querySelector.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="dom/02-querySelector.html">Download HTML</a></div>
+                <hr />
+                <h2 id="reading-changing-content">Reading &amp; Changing Content</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">const</span><span class="w"> </span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"h1"</span><span class="p">);</span>
+<span class="c1">// textContent — the raw text, no HTML</span>
+<span class="nx">title</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="c1">// "Hello World"</span>
+<span class="nx">title</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"New Title"</span><span class="p">;</span><span class="w"> </span><span class="c1">// changes what the user sees</span>
+<span class="c1">// innerHTML — the HTML inside the element</span>
+<span class="nx">title</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="c1">// "&lt;strong&gt;Hello&lt;/strong&gt; World"</span>
+<span class="nx">title</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&lt;strong&gt;Bold Title&lt;/strong&gt;"</span><span class="p">;</span><span class="w"> </span><span class="c1">// renders HTML</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><code>textContent</code> is safe — it treats everything as plain text. If you set
+                    <code>textContent = "&lt;strong&gt;bold&lt;/strong&gt;"</code> the user will literally see the
+                    <code>&lt;strong&gt;</code> tags as text.</p>
+                <p><code>innerHTML</code> is powerful but potentially dangerous. If you insert user-supplied content
+                    with <code>innerHTML</code>, malicious users can inject scripts. For user-generated content, always
+                    use <code>textContent</code>.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Select a heading. Change its <code>textContent</code>. Then try
+                        <code>innerHTML</code> with a <code>&lt;em&gt;</code> tag inside the string.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/07-innerhtml-vs-text.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="dom/07-innerhtml-vs-text.html">Download HTML</a></div>
+                <hr />
+                <h2 id="attributes">Attributes</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">const</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"a"</span><span class="p">);</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">"href"</span><span class="p">)</span><span class="w"> </span><span class="c1">// get any attribute</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"href"</span><span class="p">,</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">)</span><span class="w"> </span><span class="c1">// set any attribute</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s2">"disabled"</span><span class="p">)</span><span class="w"> </span><span class="c1">// delete attribute</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">hasAttribute</span><span class="p">(</span><span class="s2">"disabled"</span><span class="p">)</span><span class="w"> </span><span class="c1">// true or false</span>
+<span class="c1">// Shorthand direct access for common attributes</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">href</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">src</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">id</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="c1">// current value of an input</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">checked</span><span class="w"> </span><span class="c1">// true/false for checkboxes</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">disabled</span><span class="w"> </span><span class="c1">// true/false</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">placeholder</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>Run this.</strong> Select an input, <code>console.log(input.value)</code> after typing
+                        something in it. The value updates live.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/01-getElementById.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="dom/01-getElementById.html">Download HTML</a></div>
+                <hr />
+                <h2 id="changing-css-via-javascript">Changing CSS via JavaScript</h2>
+                <p>Two ways: inline styles (direct) or class manipulation (cleaner).</p>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">const</span><span class="w"> </span><span class="nx">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".box"</span><span class="p">);</span>
+<span class="c1">// Option 1: Inline style — camelCase for CSS properties</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">;</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">;</span><span class="w"> </span><span class="c1">// background-color → backgroundColor</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"20px"</span><span class="p">;</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">;</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// empty string removes the inline style</span>
+<span class="c1">// Option 2: Classes — preferred approach</span>
+<span class="c1">// Keep all visual rules in CSS, toggle classes with JS</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">"active"</span><span class="p">);</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">"active"</span><span class="p">);</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s2">"active"</span><span class="p">);</span><span class="w"> </span><span class="c1">// adds if absent, removes if present</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s2">"active"</span><span class="p">);</span><span class="w"> </span><span class="c1">// returns true or false</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"box card highlighted"</span><span class="p">;</span><span class="w"> </span><span class="c1">// replaces ALL classes</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The class approach is cleaner. You put all visual logic in CSS
+                    (<code>.active { background: green; }</code>), and JavaScript just adds or removes that class.
+                    Separation of concerns — CSS handles looks, JS handles behavior.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Write a CSS class <code>.hidden { display: none; }</code>. In JS,
+                        <code>classList.toggle("hidden")</code> on a button click. You now have a show/hide toggle.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/03-changing-styles.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="dom/03-changing-styles.html">Download HTML</a></div>
+                <hr />
+                <h2 id="creating-removing-elements">Creating &amp; Removing Elements</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="c1">// 1. Create — creates an element in memory, not yet on the page</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">newDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+<span class="c1">// 2. Configure it</span>
+<span class="nx">newDiv</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"I was created by JavaScript"</span><span class="p">;</span>
+<span class="nx">newDiv</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">"card"</span><span class="p">);</span>
+<span class="c1">// 3. Insert it into the DOM</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newDiv</span><span class="p">);</span><span class="w"> </span><span class="c1">// at the end of body</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".list"</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newDiv</span><span class="p">);</span><span class="w"> </span><span class="c1">// inside .list</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".list"</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">newDiv</span><span class="p">);</span><span class="w"> </span><span class="c1">// at the START</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".list"</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">newDiv</span><span class="p">);</span><span class="w"> </span><span class="c1">// at the END</span>
+<span class="c1">// Remove</span>
+<span class="nx">newDiv</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span><span class="w"> </span><span class="c1">// removes itself from the DOM</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>The three steps every time: create → configure → insert. If you forget the insert step, the element
+                    exists in memory but the user never sees it.</p>
+                <blockquote>
+                    <p><strong>Run this.</strong> Create a <code>&lt;p&gt;</code> element, give it text, append it to
+                        the body. Then add a button that calls <code>.remove()</code> on it.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/06-creating-elements.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="dom/06-creating-elements.html">Download HTML</a></div>
+                <hr />
+                <h2 id="events">Events</h2>
+                <p>An event is something that happens — a click, a key press, a form submission. JavaScript can listen
+                    for these and run code when they occur.</p>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"button"</span><span class="p">);</span>
+<span class="c1">// addEventListener: element, event name, callback function</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Button was clicked"</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">// The event object — passed automatically to your callback</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span><span class="w"> </span><span class="c1">// the element that triggered the event</span>
+<span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span><span class="w"> </span><span class="c1">// stops default browser behavior (e.g. form submit, link follow)</span>
+<span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span><span class="w"> </span><span class="c1">// stops event from bubbling up to parent elements</span>
+<span class="p">});</span>
+</code></pre>
+                    </div>
+                </div>
+                <p>Common event types:</p>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="s2">"click"</span><span class="w"> </span><span class="c1">// mouse click</span>
+<span class="s2">"dblclick"</span><span class="w"> </span><span class="c1">// double click</span>
+<span class="s2">"mouseenter"</span><span class="w"> </span><span class="c1">// mouse enters element area</span>
+<span class="s2">"mouseleave"</span><span class="w"> </span><span class="c1">// mouse leaves element area</span>
+<span class="s2">"keydown"</span><span class="w"> </span><span class="c1">// key pressed down — fires repeatedly if held</span>
+<span class="s2">"keyup"</span><span class="w"> </span><span class="c1">// key released</span>
+<span class="s2">"input"</span><span class="w"> </span><span class="c1">// input value changes — fires on every keystroke</span>
+<span class="s2">"change"</span><span class="w"> </span><span class="c1">// input value committed (on blur, or selection change)</span>
+<span class="s2">"submit"</span><span class="w"> </span><span class="c1">// form submitted</span>
+<span class="s2">"load"</span><span class="w"> </span><span class="c1">// page fully loaded</span>
+<span class="s2">"scroll"</span><span class="w"> </span><span class="c1">// user scrolls</span>
+<span class="s2">"resize"</span><span class="w"> </span><span class="c1">// browser window resized</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>Run this.</strong> Add a <code>keydown</code> listener to <code>document</code>. Log
+                        <code>event.key</code>. Type on the keyboard — see what gets logged.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/04-event-listeners.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="dom/04-event-listeners.html">Download HTML</a></div>
+                <hr />
+                <h2 id="working-with-inputs">Working with Inputs</h2>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">const</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input"</span><span class="p">);</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="c1">// get what the user typed</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">;</span><span class="w"> </span><span class="c1">// programmatically set the value</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">disabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// disable the input</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">checkbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[type='checkbox']"</span><span class="p">);</span>
+<span class="nx">checkbox</span><span class="p">.</span><span class="nx">checked</span><span class="w"> </span><span class="c1">// true or false</span>
+<span class="nx">checkbox</span><span class="p">.</span><span class="nx">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// check it programmatically</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>Run this.</strong> Input + button. On click, log <code>input.value</code>. See the live
+                        value.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/05-input-values.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="dom/05-input-values.html">Download HTML</a></div>
+                <hr />
+                <h2 id="patterns-putting-it-all-together">Patterns — Putting It All Together</h2>
+                <p><strong>Toggle show/hide:</strong></p>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">const</span><span class="w"> </span><span class="nx">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".box"</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">btn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"button"</span><span class="p">);</span>
+<span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">box</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s2">"hidden"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+                    </div>
+                </div>
+                <div class="language-css highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-css"><span class="p">.</span><span class="nc">hidden</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><strong>Build a live list:</strong></p>
+                <div class="language-html highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-html"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">id</span><span class="o">=</span><span class="s">"taskInput"</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Add a task"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">"addBtn"</span><span class="p">&gt;</span>Add<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">"taskList"</span><span class="p">&gt;&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre>
+                    </div>
+                </div>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="kd">const</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#taskInput"</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#addBtn"</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#taskList"</span><span class="p">);</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// don't add empty items</span>
+<span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">li</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"li"</span><span class="p">);</span>
+<span class="w"> </span><span class="nx">li</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w"> </span><span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">li</span><span class="p">);</span>
+<span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre>
+                    </div>
+                </div>
+                <p><strong>Delete on click:</strong></p>
+                <div class="language-js highlighter-rouge">
+                    <div class="highlight">
+                        <pre class="highlight"><code class="language-js"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"li"</span><span class="p">).</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">li</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">li</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nx">li</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w"> </span><span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+                    </div>
+                </div>
+                <blockquote>
+                    <p><strong>This is your final demo.</strong> Build the to-do list live. It uses HTML structure, CSS
+                        for style, and every DOM concept covered: selecting, creating, appending, events, input values.
+                        Everything lands in one place.</p>
+                </blockquote>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/09-final-demo.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="dom/09-final-demo.html">Download
+                        HTML</a></div>
+                <hr />
+                <p>That's the full workshop script. Every topic, every property, every method — explained with context
+                    and a runnable example.</p>
+                </hr>
+                </hr>
+                </hr>
+                </hr>
+            </main>
+        </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="searchTitle" class="markdown-body modal" id="search" role="dialog"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="pe-3 w-100" id="searchbox"></div>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                </div>
+                <div class="modal-body">
+                    <div id="hits"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        // Before showing searchbox
+        $('#search').on('show.bs.modal', function (e) {
+
+            // Client
+            const searchClient = algoliasearch.algoliasearch('5RYPGI69HZ', '53d709e59d833870a6886f6fcf0b0bfe');
+            const search = instantsearch({
+                indexName: 'cs50-2026-spring-extension',
+                searchClient: searchClient,
+                searchFunction: function (helper) { // https://www.algolia.com/doc/guides/building-search-ui/going-further/conditional-display/js/#handling-empty-queries
+                    const hits = $('#hits');
+                    if (helper.state.query === '') {
+                        hits.hide();
+                        return;
+                    }
+                    helper.search();
+                    hits.show();
+                }
+            });
+
+            // searchBox
+            // https://www.algolia.com/doc/api-reference/widgets/search-box/js/
+            search.addWidget(
+                instantsearch.widgets.searchBox({
+                    container: '#searchbox',
+                    cssClasses: {
+                        input: 'form-control'
+                    },
+                    placeholder: 'Search',
+                    showLoadingIndicator: false,
+                    showReset: false,
+                    showSubmit: false
+                })
+            );
+
+            // hits
+            // https://www.algolia.com/doc/api-reference/widgets/hits/js/
+            search.addWidget(
+                instantsearch.widgets.hits({
+                    container: '#hits',
+                    templates: {
+                        item: function (hit) {
+
+                            // url
+                            if (window.baseurl) {
+                                var url = window.baseurl + hit.url;
+                            }
+                            else {
+                                var url = hit.url;
+                            }
+                            if (hit.anchor) {
+                                url += '#' + hit.anchor;
+                            }
+
+                            // title
+                            if (hit._highlightResult && hit._highlightResult.headings) {
+                                var title = hit._highlightResult.headings[hit._highlightResult.headings.length - 1].value;
+                            }
+                            else if (hit._highlightResult && hit._highlightResult.title) {
+                                var title = hit._highlightResult.title.value;
+                            }
+                            else if (hit.headings) {
+                                var title = hit.headings[hit.headings.length - 1].value;
+                            }
+                            else if (hit.title) {
+                                var title = hit.title;
+                            }
+                            else {
+                                var title = url;
+                            }
+
+                            // content
+                            if (hit._highlightResult && hit._highlightResult.content) {
+                                var content = hit._highlightResult.content.value;
+                            }
+                            else if (hit._highlightResult && hit._highlightResult.title) {
+                                var content = hit._highlightResult.title.value;
+                            }
+                            else {
+                                var content = hit.excerpt_text;
+                            }
+
+                            // Template for hit
+                            return '<h2 class="font-weight-bold h3 mb-0">' +
+                                '<a href="' + url + '">' +
+                                title +
+                                '</a>' +
+                                '</h2>' +
+                                '<p class="mb-0">' +
+                                '<a class="text-muted" href="' + url + '">' +
+                                url +
+                                '</a>' +
+                                '</p>' +
+                                '<p>' +
+                                content +
+                                '</p>';
+                        }
+                    }
+                })
+            );
+
+            // poweredBy
+            search.addWidget(
+                instantsearch.widgets.poweredBy({
+                    container: '#search .modal-footer'
+                })
+            );
+
+            // Let user start searching
+            search.start();
+
+            // Resize form
+            $(window).trigger('resize');
+        });
+
+        // After showing searchbox
+        $('#search').on('shown.bs.modal', function (e) {
+            $('#searchbox input[type=search]').focus();
+        });
+
+    </script>
+    <script src="https://cs50.harvard.edu/x/2024/assets/page.js?1778206953"></script>
+</body>
+
+</html>

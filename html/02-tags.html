@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>HTML — Tags, Elements & Attributes</title>
+    <style>
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: #f0f2f5;
+            padding: 24px;
+            color: #1a1a2e;
+            line-height: 1.5;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 7px 16px;
+            background: #fff;
+            border-radius: 8px;
+            color: #3949ab;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, .12);
+        }
+
+        .back:hover {
+            background: #f5f5f5;
+        }
+
+        .hdr {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 24px 28px;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            border-left: 6px solid #e53935;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e53935;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .hdr h1 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .hdr p {
+            opacity: .6;
+            font-size: 13px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
+        }
+
+        .cl {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 14px;
+            padding-bottom: 9px;
+            border-bottom: 2px solid #f5f5f5;
+        }
+
+        .demo {
+            background: #f8faff;
+            border: 1.5px dashed #c5cae9;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        pre {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 12px;
+            line-height: 1.7;
+            overflow-x: auto;
+            margin-top: 12px;
+            font-family: "Courier New", monospace;
+            white-space: pre;
+        }
+
+        .note {
+            background: #fff8e1;
+            border-left: 3px solid #ffca28;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 12px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 6px;
+            border: none;
+            background: #e53935;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            margin: 4px 4px 4px 0;
+        }
+
+        .btn:hover {
+            opacity: .85;
+        }
+
+        .ipt {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1.5px solid #ddd;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .ipt:focus {
+            border-color: #e53935;
+        }
+
+        .out {
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: #f1f8e9;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            border: 1.5px solid #c5e1a5;
+            min-height: 40px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../index.html" class="back">← Workshop Index</a>
+    <div class="hdr">
+        <div class="badge">HTML</div>
+        <h1>Tags, Elements & Attributes</h1>
+        <p>Opening/closing tags, self-closing tags, and attribute syntax</p>
+    </div>
+
+    <div class="card">
+        <div class="cl">Anatomy of an Element</div>
+        <div class="demo" style="text-align:center;font-size:20px;font-family:monospace;padding:16px">
+            <span style="color:#e53935;font-weight:700">&lt;a</span><span style="color:#1565c0;font-weight:700">
+                href="https://google.com" target="_blank"</span><span
+                style="color:#e53935;font-weight:700">&gt;</span><span style="color:#2e7d32;font-weight:700">Go to
+                Google</span><span style="color:#e53935;font-weight:700">&lt;/a&gt;</span>
+            <div
+                style="display:flex;justify-content:space-around;margin-top:14px;font-size:13px;font-family:sans-serif;font-weight:700;color:#555">
+                <span style="color:#e53935">↑<br>Opening tag</span><span
+                    style="color:#1565c0">↑<br>Attributes</span><span style="color:#2e7d32">↑<br>Content</span><span
+                    style="color:#e53935">↑<br>Closing tag</span>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="cl">Self-Closing Tags — No closing tag needed</div>
+        <div class="demo" style="display:flex;flex-direction:column;gap:10px">
+            <div style="background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">Line one<br>Line two — the
+                &lt;br&gt; forced a new line</div>
+            <hr style="border:none;border-top:2px solid #ddd">
+            <p style="font-size:13px;color:#555">The line above is &lt;hr&gt;</p>
+            <div style="background:#f5f5f5;padding:10px;border-radius:6px;font-family:monospace;font-size:13px"><br>
+                &nbsp;&nbsp;
+                <hr> &nbsp;&nbsp; <img src="..."> &nbsp;&nbsp; <input> &nbsp;&nbsp;
+                <link>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="cl">Attributes — Extra info inside the opening tag</div>
+        <div class="demo" style="display:flex;flex-direction:column;gap:10px">
+            <div style="background:#fff;border:1px solid #ddd;padding:12px;border-radius:6px">
+                <code
+                    style="font-size:13px">&lt;a <span style="color:#1565c0">href="https://google.com"</span> <span style="color:#2e7d32">target="_blank"</span>&gt;Google&lt;/a&gt;</code><br>
+                [cite_start]<a href="https://google.com" target="_blank"
+                    style="color:#1565c0;margin-top:6px;display:inline-block">→ Google (opens new tab)</a> [cite: 15]
+            </div>
+            <div style="background:#fff;border:1px solid #ddd;padding:12px;border-radius:6px">
+                <code
+                    style="font-size:13px">&lt;img <span style="color:#1565c0">src="photo.jpg"</span> <span style="color:#2e7d32">alt="A photo"</span> <span style="color:#8e24aa">width="100"</span>&gt;</code>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>HTML — Forms & Inputs</title>
+    <style>
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: #f0f2f5;
+            padding: 24px;
+            color: #1a1a2e;
+            line-height: 1.5;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 7px 16px;
+            background: #fff;
+            border-radius: 8px;
+            color: #3949ab;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, .12);
+        }
+
+        .back:hover {
+            background: #f5f5f5;
+        }
+
+        .hdr {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 24px 28px;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            border-left: 6px solid #e53935;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e53935;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .hdr h1 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .hdr p {
+            opacity: .6;
+            font-size: 13px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
+        }
+
+        .cl {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 14px;
+            padding-bottom: 9px;
+            border-bottom: 2px solid #f5f5f5;
+        }
+
+        .demo {
+            background: #f8faff;
+            border: 1.5px dashed #c5cae9;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        pre {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 12px;
+            line-height: 1.7;
+            overflow-x: auto;
+            margin-top: 12px;
+            font-family: "Courier New", monospace;
+            white-space: pre;
+        }
+
+        .note {
+            background: #fff8e1;
+            border-left: 3px solid #ffca28;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 12px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 6px;
+            border: none;
+            background: #e53935;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            margin: 4px 4px 4px 0;
+        }
+
+        .btn:hover {
+            opacity: .85;
+        }
+
+        .ipt {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1.5px solid #ddd;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .ipt:focus {
+            border-color: #e53935;
+        }
+
+        .out {
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: #f1f8e9;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            border: 1.5px solid #c5e1a5;
+            min-height: 40px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../index.html" class="back">← Workshop Index</a>
+    <div class="hdr">
+        <div class="badge">HTML</div>
+        <h1>Forms & Inputs</h1>
+        <p>Every input type the browser supports</p>
+    </div>
+
+    [cite_start]<div class="card">
+        <div class="cl">All Input Types [cite: 24]</div>
+        <div class="demo" style="display:flex;flex-direction:column;gap:10px">
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="text"</code><input type="text"
+                    placeholder="Enter name"
+                    style="padding:6px 10px;border:1.5px solid #ddd;border-radius:6px;font-size:13px">
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="email"</code><input type="email"
+                    placeholder="you@email.com"
+                    style="padding:6px 10px;border:1.5px solid #ddd;border-radius:6px;font-size:13px">
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="password"</code><input type="password"
+                    placeholder="Hidden!"
+                    style="padding:6px 10px;border:1.5px solid #ddd;border-radius:6px;font-size:13px">
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="number"</code><input type="number"
+                    value="42"
+                    style="padding:6px 10px;border:1.5px solid #ddd;border-radius:6px;font-size:13px;width:80px">
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="date"</code><input type="date"
+                    style="padding:6px 10px;border:1.5px solid #ddd;border-radius:6px;font-size:13px">
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="range"</code><input type="range" min="0"
+                    max="100" style="width:150px">
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="checkbox"</code><label
+                    style="font-size:13px;display:flex;align-items:center;gap:6px"><input type="checkbox"> Remember
+                    me</label>
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="radio" name="color"</code><label
+                    style="margin-right:8px;font-size:13px;display:inline-flex;align-items:center;gap:4px"><input
+                        type="radio" name="color"> Red</label><label
+                    style="margin-right:8px;font-size:13px;display:inline-flex;align-items:center;gap:4px"><input
+                        type="radio" name="color"> Blue</label><label
+                    style="font-size:13px;display:inline-flex;align-items:center;gap:4px"><input type="radio"
+                        name="color"> Green</label>
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">type="file"</code><input type="file">
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">&lt;textarea&gt;</code><textarea
+                    placeholder="Write a message..."
+                    style="padding:6px 10px;border:1.5px solid #ddd;border-radius:6px;font-size:13px;resize:vertical;height:55px"></textarea>
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">&lt;select&gt;</code><select
+                    style="padding:6px 10px;border:1.5px solid #ddd;border-radius:6px;font-size:13px">
+                    <option>JavaScript</option>
+                    <option>Python</option>
+                    <option>Java</option>
+                </select>
+            </div>
+            <div
+                style="display:flex;align-items:center;gap:12px;background:#fff;padding:10px;border-radius:6px;border:1px solid #eee">
+                <code style="min-width:200px;font-size:12px;color:#888">&lt;button&gt;</code><button
+                    style="padding:8px 16px;background:#e53935;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:700">Submit</button>
+                <button disabled
+                    style="padding:8px 16px;background:#ddd;color:#aaa;border:none;border-radius:6px;cursor:not-allowed;font-weight:700">Disabled</button>
+            </div>
+        </div>
+        <div class="note">Radio buttons with the same <code>name</code> are grouped — only one can be selected.
+            [cite_start]Try clicking! [cite: 25]</div>
+    </div>
+</body>
+
+</html>

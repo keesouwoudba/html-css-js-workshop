@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DOM — Creating Elements</title>
+  <style>
+    *::before,
+    *::after,
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #f0f2f5;
+      padding: 24px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 7px 16px;
+      background: #fff;
+      border-radius: 8px;
+      color: #3949ab;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .hdr {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 24px 28px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      border-left: 6px solid #1e88e5;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background: #1e88e5;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .msg-item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="../index.html" class="back">← Workshop Index</a>
+  <div class="hdr">
+    <h1>Adding to the DOM</h1>
+    <p>Generate HTML structure with JS</p>
+  </div>
+  <div class="card">
+    <button class="btn" onclick="addMsg()">Add Message</button>
+    <div id="list" style="margin-top:15px"></div>
+  </div>
+  <script>
+    function addMsg() {
+      const p = document.createElement('div');
+      p.className = "msg-item";
+      p.innerText = "New Message Added at " + new Date().toLocaleTimeString();
+      document.getElementById('list').prepend(p);
+    }
+  </script>
+</body>
+
+</html>
