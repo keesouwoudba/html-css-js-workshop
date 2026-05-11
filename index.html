@@ -1,0 +1,1964 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Building for the Web: HTML, CSS &amp; JavaScript</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/night.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Variables ─────────────────────────── */
+    :root {
+      --r-background-color: #1a1a2e;
+      --r-main-font: 'Inter', Helvetica, sans-serif;
+      --r-main-font-size: 19px;
+      --r-main-color: #fff;
+      --r-heading-font: 'Inter', Helvetica, sans-serif;
+      --r-heading-color: #f0b247;
+      --r-heading-text-transform: none;
+      --color-primary: #f0b247;
+      --color-accent: #e8dcc4;
+      --color-text: #ffffff;
+      --color-muted: rgba(255, 255, 255, 0.55);
+      --color-warn: #ff6b6b;
+      --color-ok: #6bcb77;
+    }
+
+    /* ── Headings ───────────────────────────── */
+    .reveal h1,
+    .reveal h2,
+    .reveal h3 {
+      color: var(--color-primary);
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+      margin-bottom: 0.3em;
+    }
+
+    .reveal h2 {
+      font-size: 3em;
+      border-bottom: 2px solid rgba(240, 178, 71, 0.35);
+      padding-bottom: 0.12em;
+    }
+
+    .reveal h3 {
+      font-size: 1.4em;
+      color: var(--color-accent);
+      margin-bottom: 0.2em;
+    }
+
+    /* ── Body text ──────────────────────────── */
+    .reveal p {
+      font-size: 1.4em;
+      line-height: 1.5;
+      margin: 0.25em 0;
+    }
+
+    .reveal em {
+      color: var(--color-accent);
+      font-style: italic;
+    }
+
+    .reveal strong {
+      color: var(--color-accent);
+    }
+
+    .reveal li {
+      font-size: 1.2em;
+      line-height: 1.45;
+    }
+
+    .reveal li::marker {
+      color: var(--color-accent);
+    }
+
+    .reveal ul {
+      text-align: left;
+      margin-left: 1.1em;
+      margin-top: 0.2em;
+    }
+
+    .reveal ol {
+      text-align: left;
+      margin-left: 1.1em;
+      margin-top: 0.2em;
+    }
+
+    /* ── Images ─────────────────────────────── */
+    .reveal section img {
+      border: none;
+      border-radius: 8px;
+      margin: 0;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+    }
+
+    /* ── Inline code ────────────────────────── */
+    .reveal code:not(pre code) {
+      background: rgba(240, 178, 71, 0.14);
+      color: #f0b247;
+      padding: 0.08em 0.32em;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    /* ── Code blocks ────────────────────────── */
+    .reveal pre {
+      width: 100%;
+      margin: 0.35em auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
+      border-radius: 8px;
+    }
+
+    .reveal pre code {
+      font-size: 1.5em;
+      line-height: 1.4em;
+      padding: 0.85em 1em;
+      border-radius: 8px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    /* ── Layout — Row System ────────────────── */
+    .row {
+      display: flex !important;
+      align-items: center;
+      gap: 1.4em;
+      width: 100%;
+      text-align: left;
+    }
+
+    .col-text {
+      flex: 1 1 55%;
+      min-width: 0;
+    }
+
+    .col-img {
+      flex: 0 0 38%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4em;
+    }
+
+    .col-img.wide {
+      flex: 0 0 46%;
+    }
+
+    .col-img img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    .col-code {
+      flex: 0 0 50%;
+      min-width: 0;
+    }
+
+    .col-code pre {
+      margin: 0;
+    }
+
+    /* ── Full-width content wrapper ─────────── */
+    .content-wrap {
+      text-align: left;
+      width: 100%;
+    }
+
+    /* ── Title slide ────────────────────────── */
+    .title-slide {
+      text-align: center !important;
+    }
+
+    .title-slide h1 {
+      font-size: 4em;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border: none !important;
+      margin-bottom: 0.15em;
+    }
+
+    .title-slide h3 {
+      font-size: 1.3em;
+      color: var(--color-accent);
+      font-weight: 400;
+      margin-top: 0;
+    }
+
+    .meta {
+      margin-top: 1.4em;
+      font-size: 0.9em;
+      color: var(--color-muted);
+    }
+
+    .meta p {
+      margin: 0.15em 0;
+    }
+
+    /* ── Part separator slide ───────────────── */
+    .part-slide {
+      text-align: center !important;
+    }
+
+    .part-slide h1 {
+      font-size: 4em;
+      border: none !important;
+      margin-bottom: 0.2em;
+    }
+
+    .part-slide h3 {
+      font-size: 1.2em;
+      color: var(--color-muted);
+      font-weight: 300;
+    }
+
+    /* ── Callout boxes ──────────────────────── */
+    .callout {
+      border-left: 3px solid var(--color-primary);
+      background: rgba(240, 178, 71, 0.08);
+      padding: 0.4em 0.75em;
+      border-radius: 0 6px 6px 0;
+      margin-top: 0.45em;
+      font-size: 1.2em;
+    }
+
+    .callout-warn {
+      border-left-color: var(--color-warn);
+      background: rgba(255, 107, 107, 0.08);
+    }
+
+    .callout-ok {
+      border-left-color: var(--color-ok);
+      background: rgba(107, 203, 119, 0.08);
+    }
+
+    /* ── Reference link box ─────────────────── */
+    .ref-box {
+      background: rgba(240, 178, 71, 0.08);
+      border: 1px solid rgba(240, 178, 71, 0.35);
+      border-radius: 8px;
+      padding: 0.45em 1em;
+      text-align: center;
+      margin-top: 0.5em;
+    }
+
+    .ref-box a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+
+    .ref-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Table ───────────────────────────────── */
+    .reveal table {
+      font-size: 1.1em;
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.4em;
+    }
+
+    .reveal table th {
+      background: rgba(240, 178, 71, 0.18);
+      color: var(--color-primary);
+      padding: 0.35em 0.6em;
+      font-weight: 600;
+    }
+
+    .reveal table td {
+      padding: 0.32em 0.6em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      vertical-align: top;
+    }
+
+    .reveal table tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* ── Big items (slide 2 — three languages) ─ */
+    .big-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65em;
+      margin-bottom: 0.55em;
+      text-align: left;
+    }
+
+    .big-emoji {
+      font-size: 1.8em;
+      line-height: 1.1;
+      flex-shrink: 0;
+    }
+
+    .big-body {
+      font-size: 1.1em;
+      line-height: 1.5;
+    }
+
+    .big-body strong {
+      color: var(--color-primary);
+      font-size: 1.2em;
+    }
+
+    /* ── File tree ───────────────────────────── */
+    .file-tree {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 8px;
+      padding: 0.7em 1.2em;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1em;
+      line-height: 1.9;
+      text-align: left;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .file-tree span {
+      color: var(--color-muted);
+    }
+
+    /* ── Code label ──────────────────────────── */
+    .code-label {
+      font-size: 0.9em;
+      color: var(--color-muted);
+      margin-bottom: 0.15em;
+      text-align: left;
+    }
+
+    /* ── Two code blocks side by side ────────── */
+    .two-code {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8em;
+      width: 100%;
+    }
+
+    /* ── Next arrow indicator ────────────────── */
+    .next-hint {
+      font-size: 0.8em;
+      color: var(--color-muted);
+      text-align: right;
+      margin-top: 0.5em;
+    }
+
+    /* ── Slide 41 — badge row ────────────────── */
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35em;
+      margin-top: 0.5em;
+    }
+
+    .badge {
+      background: rgba(107, 203, 119, 0.12);
+      border: 1px solid rgba(107, 203, 119, 0.35);
+      border-radius: 4px;
+      padding: 0.18em 0.5em;
+      font-size: 0.85em;
+      color: var(--color-ok);
+    }
+
+    /* ── Slide 42 — What's Next grid ─────────── */
+    .next-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8em;
+      margin-top: 0.5em;
+    }
+
+    .next-card {
+      background: rgba(240, 178, 71, 0.07);
+      border: 1px solid rgba(240, 178, 71, 0.22);
+      border-radius: 8px;
+      padding: 0.65em 0.9em;
+      text-align: left;
+      font-size: 0.9em;
+    }
+
+    .next-card strong {
+      color: var(--color-primary);
+      display: block;
+      margin-bottom: 0.1em;
+    }
+
+    /* ── DOM flow diagram ────────────────────── */
+    .dom-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      margin-top: 0.6em;
+      font-size: 0.8em;
+    }
+
+    .dom-box {
+      background: rgba(240, 178, 71, 0.12);
+      border: 1px solid rgba(240, 178, 71, 0.35);
+      border-radius: 6px;
+      padding: 0.3em 0.6em;
+      color: var(--color-accent);
+    }
+
+    .dom-arrow {
+      color: var(--color-muted);
+      font-size: 1.2em;
+    }
+
+    /* ── Image caption ───────────────────────── */
+    .img-caption {
+      font-size: 0.5em;
+      color: var(--color-muted);
+      text-align: center;
+      margin-top: 0.2em;
+    }
+
+    /* ── Progress & controls ─────────────────── */
+    .reveal .progress {
+      height: 5px;
+      color: var(--color-primary);
+    }
+
+    .reveal .progress span {
+      background: var(--color-primary);
+      transition: width 0.8s ease;
+    }
+
+    .reveal .slide-number {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.4);
+      background: transparent;
+    }
+
+    .reveal .controls {
+      color: var(--color-primary);
+    }
+
+    /* ── HR divider ──────────────────────────── */
+    hr.divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      margin: 0.45em 0;
+    }
+
+    /* ── Small muted note ────────────────────── */
+    .note-sm {
+      font-size: 0.72em;
+      color: var(--color-muted);
+      font-style: italic;
+      margin-top: 0.35em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ═══════ SLIDE 1 — TITLE ═══════ -->
+      <section class="title-slide" data-background-color="#1a1a2e">
+        <h1>Building for the Web</h1>
+        <h3>HTML, CSS &amp; JavaScript — A hands-on workshop</h3>
+        <div class="meta">
+          <p>Today we build something real.</p>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 2 — THE BIG PICTURE ═══════ -->
+      <section>
+        <h2>Three languages. Three jobs.</h2>
+        <div class="content-wrap">
+          <div class="big-item">
+            <span class="big-emoji">🦴</span>
+            <div class="big-body">
+              <strong>HTML</strong> — The skeleton. Pure content and structure. Text, buttons, images.
+              No color, no layout, no behavior. Just: <em>what is on the page.</em>
+            </div>
+          </div>
+          <div class="big-item">
+            <span class="big-emoji">🎨</span>
+            <div class="big-body">
+              <strong>CSS</strong> — The stylist. Takes that skeleton and makes it look good.
+              Colors, fonts, layout, spacing.
+            </div>
+          </div>
+          <div class="big-item">
+            <span class="big-emoji">🧠</span>
+            <div class="big-body">
+              <strong>JavaScript</strong> — The brain. The only real programming language of the three.
+              Makes the page react to what the user does.
+            </div>
+          </div>
+          <div class="callout">
+            <em>When you open Google: the search box is HTML. The rounded corners are CSS.
+              The suggestions appearing as you type — that's JavaScript.</em>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 3 — HOW THEY CONNECT ═══════ -->
+      <section>
+        <h2>One page, three files</h2>
+        <div class="row">
+          <div class="col-text">
+            <div class="file-tree">
+              index.html &nbsp;&nbsp;&nbsp;<span>← the page itself</span><br>
+              styles.css &nbsp;&nbsp;&nbsp;<span>← linked from HTML</span><br>
+              script.js &nbsp;&nbsp;&nbsp;&nbsp;<span>← linked from HTML</span>
+            </div>
+            <p style="margin-top:0.6em;">HTML is the entry point. CSS and JavaScript are attached to it.
+              The browser loads <code>index.html</code>, sees the links, fetches the other files,
+              and applies them.</p>
+          </div>
+          <div class="col-code">
+            <p class="code-label">index.html — the glue</p>
+            <pre><code data-trim class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css" /&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+      </code></pre>
+          </div>
+        </div>
+        <aside class="notes">📌 Live code block: show all three files side by side — a minimal index.html with link to
+          styles.css and script.js — and the rendered result in the browser.</aside>
+      </section>
+
+      <!-- ═══════ PART 1 — HTML SEPARATOR ═══════ -->
+      <section class="part-slide" data-background-color="#12122a">
+        <h1>Part 1</h1>
+        <h3>HTML — The Skeleton</h3>
+      </section>
+
+      <!-- ═══════ SLIDE 4 — THE HTML FILE ═══════ -->
+      <section>
+        <h2>Every webpage is just a text file</h2>
+        <div class="row">
+          <div class="col-code" style="flex: 0 0 52%;">
+            <pre><code data-trim class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css" /&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;
+    &lt;p&gt;This is my first page.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <ul>
+              <li><code>&lt;!DOCTYPE html&gt;</code> — tells the browser: use modern HTML</li>
+              <li><code>&lt;head&gt;</code> — invisible zone: title, CSS links, JS links</li>
+              <li><code>&lt;body&gt;</code> — everything the user actually sees</li>
+              <li><code>&lt;title&gt;</code> — the text in the browser tab</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">📌 Run this live. Point to the tab showing the title. Point to the body showing the text.
+        </aside>
+      </section>
+
+      <!-- ═══════ SLIDE 5 — TAGS & ATTRIBUTES ═══════ -->
+      <section>
+        <h2>How HTML is written</h2>
+        <div class="row">
+          <div class="col-text">
+            <p>Every HTML instruction is a <strong>tag</strong>: <code>&lt;p&gt;</code> to open,
+              <code>&lt;/p&gt;</code> to close.
+            </p>
+            <p style="margin-top:0.5em;"><strong>Attributes</strong> give extra information to a tag:</p>
+            <ul>
+              <li><code>href</code> — where the link goes</li>
+              <li><code>target="_blank"</code> — open in new tab</li>
+            </ul>
+            <p class="note-sm">If you forget an attribute, the element still shows — it just won't behave correctly.</p>
+          </div>
+          <div class="col-code" style="flex: 0 0 50%;">
+            <pre><code data-trim class="language-html">
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;a href="https://google.com"
+   target="_blank"&gt;
+  Go to Google
+&lt;/a&gt;
+      </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 6 — TEXT TAGS ═══════ -->
+      <section>
+        <h2>Putting text on a page</h2>
+        <div class="row">
+          <div class="col-code" style="flex: 0 0 48%;">
+            <pre><code data-trim class="language-html">
+&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h2&gt;Section Title&lt;/h2&gt;
+&lt;h3&gt;Smaller Section&lt;/h3&gt;
+&lt;p&gt;A paragraph of text.&lt;/p&gt;
+
+&lt;strong&gt;Bold&lt;/strong&gt;
+&lt;em&gt;Italic&lt;/em&gt;
+&lt;u&gt;Underline&lt;/u&gt;
+&lt;s&gt;Strikethrough&lt;/s&gt;
+
+&lt;br /&gt;    ← line break
+&lt;hr /&gt;    ← horizontal line
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p><code>h1</code> through <code>h6</code> are headings. The browser gives them size
+              automatically — no CSS needed.</p>
+            <p style="margin-top:0.4em;"><code>strong</code>, <code>em</code>, <code>u</code>,
+              <code>s</code> are inline formatters — they wrap around words inside text.
+            </p>
+          </div>
+        </div>
+        <aside class="notes">📌 Live code: write all of these, show the result. Ask: what happens if we use h1 twice?
+          Nothing technically breaks — but it's bad practice for SEO.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 7 — LINKS & IMAGES ═══════ -->
+      <section>
+        <h2>Connecting pages and showing pictures</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-html">
+&lt;a href="https://google.com"&gt;Go to Google&lt;/a&gt;
+&lt;a href="about.html"&gt;Go to About page&lt;/a&gt;
+
+&lt;img src="photo.jpg" alt="A sunset photo" /&gt;
+    </code></pre>
+          <div class="row" style="margin-top:0.5em; align-items:flex-start;">
+            <div class="col-text">
+              <h3>Links <code>&lt;a&gt;</code></h3>
+              <ul>
+                <li><code>href</code> is the destination — a URL or a relative file path</li>
+                <li>Relative means: look for this file next to the current HTML file</li>
+              </ul>
+            </div>
+            <div class="col-text">
+              <h3>Images <code>&lt;img&gt;</code></h3>
+              <ul>
+                <li>No closing tag needed</li>
+                <li><code>src</code> is the path to the image file</li>
+                <li><code>alt</code> is what shows if image fails, and what screen readers read</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: create two HTML files, link between them. Drop an image in the folder and display
+          it.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 8 — DIV AND SPAN ═══════ -->
+      <section>
+        <h2>The most used tags in the world</h2>
+        <div class="row">
+          <div class="col-text">
+            <p><code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> have zero visual meaning on their own.
+              They're blank containers you use to group things and apply CSS to.</p>
+            <pre><code data-trim class="language-html">
+&lt;div class="card"&gt;
+  &lt;h2&gt;Product Name&lt;/h2&gt;
+  &lt;p&gt;Description here.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The price is
+  &lt;span class="price"&gt;$9.99&lt;/span&gt;
+  today only.&lt;/p&gt;
+      </code></pre>
+            <ul style="margin-top:0.35em;">
+              <li><strong><code>&lt;div&gt;</code></strong> — block level. Full width, starts on a new line. A box.</li>
+              <li><strong><code>&lt;span&gt;</code></strong> — inline. Sits inside text without breaking. A highlighter
+                pen.</li>
+            </ul>
+          </div>
+          <div class="col-img">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/62d7afdd0711b76729174013/295d89b3-7d36-41bc-b280-d5443c29507f/divspan.png?format=500w"
+              alt="div vs span visual difference" />
+            <p class="img-caption">div vs span — visual difference</p>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: three divs stacked. Then a paragraph with a span coloring one word.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 9 — ID AND CLASS ═══════ -->
+      <section>
+        <h2>How you target elements from CSS and JS</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-html">
+&lt;h1 id="mainTitle"&gt;Hello&lt;/h1&gt;
+
+&lt;div class="card"&gt;Card One&lt;/div&gt;
+&lt;div class="card"&gt;Card Two&lt;/div&gt;
+&lt;div class="card featured"&gt;Card Three&lt;/div&gt;
+    </code></pre>
+          <table style="margin-top:0.5em;">
+            <thead>
+              <tr>
+                <th><code>id</code></th>
+                <th><code>class</code></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Unique — one per page</td>
+                <td>Shared — many elements</td>
+              </tr>
+              <tr>
+                <td>Like a name badge</td>
+                <td>Like a team uniform</td>
+              </tr>
+              <tr>
+                <td>Used with <code>#</code> in CSS</td>
+                <td>Used with <code>.</code> in CSS</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note-sm" style="margin-top:0.5em;">
+            One element can have multiple classes, space-separated: <code>class="card featured"</code><br>
+            <em>This will make complete sense in 10 minutes when we reach CSS selectors.</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 10 — LISTS & FORMS (reference) ═══════ -->
+      <section>
+        <h2>Lists and Form inputs — a quick introduction</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 52%;">
+            <pre><code data-trim class="language-html">
+&lt;ul&gt;
+  &lt;li&gt;Item&lt;/li&gt;      &lt;!-- bullets --&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Step 1&lt;/li&gt;   &lt;!-- numbered --&gt;
+&lt;/ol&gt;
+
+&lt;input type="text" placeholder="Your name" /&gt;
+&lt;input type="email" /&gt;
+&lt;input type="checkbox" /&gt;
+&lt;button&gt;Submit&lt;/button&gt;
+&lt;textarea&gt;&lt;/textarea&gt;
+&lt;select&gt;
+  &lt;option&gt;Option A&lt;/option&gt;
+&lt;/select&gt;
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p>These are the building blocks of every form you'll ever see on the web. We won't
+              go deep today — forms get interesting when connected to a backend, which is its own topic entirely.</p>
+            <div class="ref-box" style="margin-top:0.6em;">
+              <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html#forms-inputs"
+                target="_blank">
+                📖 Every input type with live examples →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 11 — SEMANTIC TAGS (reference) ═══════ -->
+      <section>
+        <h2>Writing HTML that means something</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 52%;">
+            <pre><code data-trim class="language-html">
+&lt;header&gt;    ← top of page
+  &lt;nav&gt;     ← navigation links
+
+&lt;main&gt;      ← main content
+  &lt;section&gt; ← a chunk of content
+    &lt;article&gt; ← standalone piece
+
+&lt;aside&gt;     ← sidebar
+&lt;footer&gt;    ← bottom of page
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p>Semantic tags work exactly like <code>&lt;div&gt;</code> — same behavior, just a more descriptive name.
+            </p>
+            <p style="margin-top:0.4em;">The page looks <em>identical</em> whether you use <code>&lt;div&gt;</code>
+              or <code>&lt;header&gt;</code>. The difference: Google's crawler and screen readers can understand
+              the structure of your page.</p>
+            <div class="ref-box" style="margin-top:0.5em;">
+              <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html#semantic-tags"
+                target="_blank">
+                📖 Full semantic tags guide →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ PART 2 — CSS SEPARATOR ═══════ -->
+      <section class="part-slide" data-background-color="#12122a">
+        <h1>Part 2</h1>
+        <h3>CSS — The Stylist</h3>
+      </section>
+
+      <!-- ═══════ SLIDE 12 — CONNECTING CSS ═══════ -->
+      <section>
+        <h2>How CSS reaches HTML</h2>
+        <div class="content-wrap">
+          <div class="two-code">
+            <div>
+              <p class="code-label">In your &lt;head&gt;</p>
+              <pre><code data-trim class="language-html">
+&lt;link rel="stylesheet"
+      href="styles.css" /&gt;
+        </code></pre>
+            </div>
+            <div>
+              <p class="code-label">styles.css</p>
+              <pre><code data-trim class="language-css">
+p {
+  color: blue;
+  font-size: 20px;
+}
+        </code></pre>
+            </div>
+          </div>
+          <p style="margin-top:0.5em;">One line in HTML and the browser applies every rule in that CSS file to the
+            entire page.</p>
+          <div class="callout">
+            <strong>The syntax:</strong> selector → curly braces → property: value → semicolon after every value.
+          </div>
+        </div>
+        <aside class="notes">📌 Live: create styles.css, link it, change paragraph color. Show how removing the link
+          removes all styles instantly.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 13 — SELECTORS ═══════ -->
+      <section>
+        <h2>Telling CSS what to style</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 55%;">
+            <pre><code data-trim class="language-css">
+p         { }   /* every &lt;p&gt; */
+.card     { }   /* class="card" */
+#title    { }   /* id="title" */
+h1, h2, h3 { }  /* multiple at once */
+.card p   { }   /* &lt;p&gt; inside .card */
+
+button:hover  { }  /* mouse over */
+button:active { }  /* while clicking */
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p>The priority rule: <strong>id</strong> beats <strong>class</strong>, class beats tag name.</p>
+            <p style="margin-top:0.4em;">When two rules conflict, the more <em>specific</em> one wins.</p>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: style all paragraphs blue. Add a class to one and make it red. Show the class
+          wins.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 14 — COLORS ═══════ -->
+      <section>
+        <h2>Four ways to say "red"</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-css">
+color: red;                  /* name */
+color: rgb(255, 0, 0);       /* red, green, blue — each 0 to 255 */
+color: rgba(255, 0, 0, 0.5); /* same + transparency: 0=invisible, 1=solid */
+color: #ff0000;              /* hex — same as RGB, just shorter */
+    </code></pre>
+          <p style="margin-top:0.5em;">All four produce the same result. Use whichever feels readable.</p>
+          <div class="callout" style="margin-top:0.4em;">
+            <strong>rgba</strong> is especially useful when you want partial transparency —
+            like a dark overlay on a hero image.
+          </div>
+        </div>
+        <aside class="notes">📌 Live: four divs, same red written four different ways. They look identical.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 15 — BACKGROUNDS ═══════ -->
+      <section>
+        <h2>Filling elements with color or image</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 55%;">
+            <pre><code data-trim class="language-css">
+background-color: lightblue;
+background-color: rgba(0, 0, 0, 0.5);
+
+background-image: url("photo.jpg");
+background-size: cover;    /* fills, crops if needed */
+background-size: contain;  /* fits inside, may leave gaps */
+background-position: center;
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p><code>background-size: cover</code> is your go-to for hero sections and card backgrounds.</p>
+            <p style="margin-top:0.4em;">Think of fitting a photo into a frame — the frame always fills,
+              and the edges crop if needed.</p>
+            <div class="ref-box" style="margin-top:0.5em;">
+              <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html#backgrounds"
+                target="_blank">
+                📖 Backgrounds guide →
+              </a>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: a div with fixed width and height, background image. Toggle cover vs contain. See
+          the difference.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 16 — TEXT & FONTS ═══════ -->
+      <section>
+        <h2>Controlling how text looks</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 54%;">
+            <pre><code data-trim class="language-css">
+font-family: Roboto, Arial, sans-serif;
+font-size: 16px;
+font-weight: normal;   /* or: bold */
+font-style: italic;
+color: black;
+
+text-align: left / center / right;
+text-decoration: none;
+text-decoration: underline;
+text-decoration: line-through;
+
+text-transform: uppercase / lowercase;
+line-height: 1.5;
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p><code>font-family</code> with multiple values is a safety net —
+              try the first, fall back to the next if unavailable.</p>
+            <div class="callout" style="margin-top:0.4em;">
+              <code>text-decoration: none</code> is something you'll write constantly:
+              it removes the default underline from <code>&lt;a&gt;</code> tags.
+            </div>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: import a Google Font, apply it. Toggle text-align. Show text-decoration: none on a
+          link.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 17 — SIZING ═══════ -->
+      <section>
+        <h2>Setting width and height</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 54%;">
+            <pre><code data-trim class="language-css">
+width: 200px;     /* fixed — always 200px */
+width: 50%;       /* relative — 50% of parent's width */
+width: 100vw;     /* 100% of the browser window width */
+max-width: 600px; /* never wider than this */
+
+height: 100px;
+height: 100vh;    /* 100% of the browser window height */
+min-height: 200px;
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p><code>max-width</code> is something you'll use in almost every project.</p>
+            <p style="margin-top:0.4em;">It lets an element shrink on small screens but prevents
+              it from stretching to 2000px on a huge monitor.</p>
+            <div class="ref-box" style="margin-top:0.5em;">
+              <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html#sizing" target="_blank">
+                📖 Open live demo — resizable div →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 18 — BOX MODEL (vertical stack) ═══════ -->
+      <section>
+
+        <!-- 18a — Concept -->
+        <section>
+          <h2>The Box Model — Every element is a box</h2>
+          <div class="row">
+            <div class="col-text">
+              <p>This is one of the most important concepts in CSS. Every element — every button,
+                div, paragraph — is a rectangle made of four layers:</p>
+              <pre><code data-trim class="language-text">
+[ margin   ]     ← space OUTSIDE
+  [ border ]     ← the outline
+    [ padding ]  ← space INSIDE
+      [ content ]← actual text/image
+        </code></pre>
+              <div class="next-hint">Press ↓ for the CSS code</div>
+            </div>
+            <div class="col-img wide">
+              <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Box_model/boxmodel.png"
+                alt="CSS Box Model diagram from MDN" />
+              <p class="img-caption">Source: MDN Web Docs</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 18b — Code -->
+        <section>
+          <h2>The Box Model — Writing it in CSS</h2>
+          <div class="content-wrap">
+            <pre><code data-trim class="language-css">
+padding: 10px 20px 30px 40px;  /* top right bottom left */
+margin: auto;                   /* centers element horizontally */
+
+border: 1px solid black;
+border: 2px dashed red;
+border: none;
+border-radius: 5px;   /* rounded corners */
+border-radius: 50%;   /* circle */
+
+box-sizing: border-box;  /* ← always add this */
+      </code></pre>
+            <div class="callout-warn" style="margin-top:0.4em;">
+              <strong>⚠️ The trap:</strong> a div with <code>width: 200px</code> and <code>padding: 20px</code>
+              ends up being 240px wide by default. <code>box-sizing: border-box</code> fixes this —
+              padding counts <em>inside</em> the stated width.
+            </div>
+            <div class="callout-ok" style="margin-top:0.35em;">
+              Put <code>* { box-sizing: border-box; }</code> at the top of every CSS file.
+            </div>
+          </div>
+          <aside class="notes">📌 Live: show broken behavior without border-box. Add it, see the fix. Open DevTools and
+            show the box model diagram.</aside>
+        </section>
+
+      </section>
+
+      <!-- ═══════ SLIDE 19 — DISPLAY ═══════ -->
+      <section>
+        <h2>Block, inline, and none</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-css">
+display: block;        /* full width, new line (default: div, p, h1) */
+display: inline;       /* sits in text, no width/height control (span, a) */
+display: inline-block; /* inline but you CAN set width and height */
+display: none;         /* completely removed — not just invisible */
+display: flex;         /* flexbox — next slide */
+    </code></pre>
+          <table style="margin-top:0.5em;">
+            <thead>
+              <tr>
+                <th><code>display: none</code></th>
+                <th><code>opacity: 0</code></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Element vanishes completely</td>
+                <td>Element invisible but space reserved</td>
+              </tr>
+              <tr>
+                <td>Other elements close the gap</td>
+                <td>Other elements do NOT move</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="notes">📌 Live: three divs. Set display: none on the middle one. The third div jumps up to fill
+          the gap.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 20 — FLEXBOX (vertical stack) ═══════ -->
+      <section>
+
+        <!-- 20a — Container -->
+        <section>
+          <h2>Flexbox — The layout system you'll use every day</h2>
+          <div class="row">
+            <div class="col-text">
+              <p>Before Flexbox, centering something vertically in CSS was notoriously painful.
+                Flexbox solved layout.</p>
+              <p style="margin-top:0.3em;">You apply it to a <strong>container</strong>.
+                It controls how the children inside are arranged.</p>
+              <div class="next-hint">Press ↓ for child properties</div>
+            </div>
+            <div class="col-code" style="flex:0 0 52%;">
+              <pre><code data-trim class="language-css">
+display: flex;
+
+flex-direction: row;     /* left to right — default */
+flex-direction: column;  /* top to bottom */
+
+justify-content: center;
+justify-content: space-between;
+justify-content: flex-start;
+justify-content: space-evenly;
+
+align-items: center;
+align-items: flex-start;
+align-items: stretch;
+
+gap: 16px;
+        </code></pre>
+            </div>
+          </div>
+          <div class="ref-box" style="margin-top:0.4em;">
+            <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html#flexbox" target="_blank">
+              📖 Interactive flexbox demos →
+            </a>
+          </div>
+        </section>
+
+        <!-- 20b — Children -->
+        <section>
+          <h2>Flexbox — Controlling individual items</h2>
+          <div class="content-wrap">
+            <pre><code data-trim class="language-css">
+/* Applied to the children inside the flex container */
+flex: 1;         /* take equal share of remaining space */
+flex: 2;         /* take twice the space of a flex:1 item */
+flex-shrink: 0;  /* don't shrink even if container is too small */
+      </code></pre>
+            <pre><code data-trim class="language-html" style="margin-top:0.4em;">
+&lt;div style="display: flex;"&gt;
+  &lt;div style="width: 100px;"&gt;Fixed&lt;/div&gt;
+  &lt;div style="flex: 1;"&gt;Takes remaining space&lt;/div&gt;
+  &lt;div style="flex: 2;"&gt;Takes twice as much&lt;/div&gt;
+&lt;/div&gt;
+      </code></pre>
+            <div class="callout" style="margin-top:0.4em;">
+              A sidebar layout in one line: fixed-width sidebar on the left,
+              <code>flex: 1</code> content area on the right.
+            </div>
+          </div>
+          <aside class="notes">📌 Live: build a sidebar layout using flex: 1. Then show a navigation bar with logo on
+            left and links pushed right using margin-left: auto on the last item.</aside>
+        </section>
+
+      </section>
+
+      <!-- ═══════ SLIDE 21 — POSITION ═══════ -->
+      <section>
+        <h2>Placing elements precisely</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 56%;">
+            <pre><code data-trim class="language-css">
+/* stays in flow — reference point for children */
+position: relative;
+
+/* removed from flow — positioned relative to
+   nearest non-static parent */
+position: absolute;
+top: 0;   right: 0;
+bottom: 0; left: 0;
+      </code></pre>
+            <pre><code data-trim class="language-html" style="margin-top:0.4em;">
+&lt;div style="position:relative; width:200px;
+            height:200px; background:lightblue;"&gt;
+  &lt;span style="position:absolute; top:5px;
+               right:5px; background:red;
+               color:white; padding:2px 8px;"&gt;
+    NEW
+  &lt;/span&gt;
+  Card content
+&lt;/div&gt;
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p><strong>The most common pattern:</strong><br>
+              <code>relative</code> on parent + <code>absolute</code> on child = place something in a corner.
+            </p>
+            <div class="callout-warn" style="margin-top:0.5em;">
+              Remove <code>position: relative</code> from the parent — watch the badge fly to the page corner.
+              <em>That's the moment people understand position.</em>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 22 — FIXED & STICKY (reference) ═══════ -->
+      <section>
+        <h2>Two more position values worth knowing</h2>
+        <div class="content-wrap">
+          <h3><code>position: fixed</code></h3>
+          <p>Pulled out of the flow and stuck to the browser window. It doesn't scroll.</p>
+          <p><em>Classic use:</em> a navigation bar that always stays at the top.</p>
+
+          <hr class="divider" />
+
+          <h3 style="margin-top:0.4em;"><code>position: sticky</code></h3>
+          <p>Acts completely normal as you scroll, until the element hits a threshold —
+            then it stops and sticks while the rest scrolls under it.</p>
+          <p><em>Classic use:</em> section headings that stay visible while their section is in view.</p>
+
+          <div class="ref-box" style="margin-top:0.5em;">
+            <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html#position" target="_blank">
+              📖 Interactive fixed &amp; sticky demos →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 23 — OPACITY, SHADOWS, CURSOR (reference) ═══════ -->
+      <section>
+        <h2>A few small but useful properties</h2>
+        <div class="content-wrap">
+          <h3><code>opacity</code></h3>
+          <p>Controls transparency. <code>1</code> = fully visible. <code>0</code> = invisible but still takes up space.
+          </p>
+
+          <hr class="divider" />
+
+          <h3 style="margin-top:0.35em;"><code>box-shadow</code></h3>
+          <pre><code data-trim class="language-css">
+box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+/*           ↑    ↑    ↑         ↑
+           right down blur  color+transparency  */
+    </code></pre>
+
+          <hr class="divider" />
+
+          <h3 style="margin-top:0.35em;"><code>cursor: pointer</code></h3>
+          <p>Shows the hand cursor on hover. Always add this to anything you make clickable via JavaScript.
+            Divs don't get the pointer cursor automatically — only real buttons do.</p>
+
+          <div class="ref-box" style="margin-top:0.4em;">
+            <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html#shadow-cursor"
+              target="_blank">
+              📖 Full explanation and interactive examples →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ PART 3 — JAVASCRIPT SEPARATOR ═══════ -->
+      <section class="part-slide" data-background-color="#12122a">
+        <h1>Part 3</h1>
+        <h3>JavaScript — The Brain</h3>
+      </section>
+
+      <!-- ═══════ SLIDE 24 — JS IN THE BROWSER ═══════ -->
+      <section>
+        <h2>The only language that runs in the browser</h2>
+        <div class="row">
+          <div class="col-text">
+            <p>JavaScript is not Java. The name was a 1995 marketing decision. Every browser has a
+              JS engine built in — Chrome uses V8, Firefox uses SpiderMonkey. Your code compiles
+              and runs right inside the tab.</p>
+            <pre><code data-trim class="language-html">
+&lt;script src="script.js" defer&gt;&lt;/script&gt;
+      </code></pre>
+            <div class="callout" style="margin-top:0.4em;">
+              <code>defer</code> means: load the file, but wait until HTML is fully parsed before running.
+              This prevents JS from running before the elements it needs actually exist.
+            </div>
+          </div>
+          <div class="col-text">
+            <div class="callout-ok">
+              <strong>Try it:</strong> create <code>script.js</code>, add<br>
+              <code>console.log("hello")</code><br>
+              Open DevTools → Console (F12). See it appear.
+            </div>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: create script.js. Add console.log("hello"). Open DevTools → Console (F12). Show
+          it.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 25 — VARIABLES ═══════ -->
+      <section>
+        <h2>Storing values</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-js">
+let name = "Alice";   // can be reassigned
+const PI = 3.14;      // cannot be reassigned — throws an error if you try
+
+let num = 42;
+let text = "hello";
+let flag = true;
+let nothing = null;
+let notDefined;       // declared but no value — undefined
+    </code></pre>
+          <div class="callout" style="margin-top:0.4em;">
+            Use <code>const</code> by default. Only switch to <code>let</code> when you know you'll need
+            to reassign. If you try to reassign a <code>const</code>, JavaScript throws an error
+            immediately — which is actually helpful, it means you made a mistake.
+          </div>
+          <div class="callout-warn" style="margin-top:0.35em;">
+            <strong>⛔ Don't use <code>var</code></strong> — it's old and has unexpected scoping behavior. Forget it
+            exists.
+          </div>
+        </div>
+        <aside class="notes">📌 Live: declare a const. Try reassigning it. Show the error in the console.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 26 — STRINGS & TEMPLATE LITERALS ═══════ -->
+      <section>
+        <h2>Working with text</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 55%;">
+            <pre><code data-trim class="language-js">
+let name = "Alice";
+
+// Old way — verbose
+let greeting = "Hello " + name + "!";
+
+// Modern way — template literals
+let greeting = `Hello ${name}!`;
+let math = `Two plus two is ${2 + 2}`;
+
+// String methods
+name.length;          // 5
+name.toUpperCase();   // "ALICE"
+name.includes("lic"); // true
+name.trim();          // removes whitespace
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p>Use <strong>backtick template literals</strong> — they're shorter and support
+              expressions inside <code>${...}</code>.</p>
+            <div class="ref-box" style="margin-top:0.5em;">
+              <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html#strings" target="_blank">
+                📖 Full list of Math &amp; String methods →
+              </a>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: template literal with a name variable. Change the name. See the string update.
+        </aside>
+      </section>
+
+      <!-- ═══════ SLIDE 27 — BOOLEANS & COMPARISON ═══════ -->
+      <section>
+        <h2>Always use ===</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-js">
+5 === "5";  // false — strict: checks value AND type
+5 == "5";   // true  — loose: converts types to match
+
+5 !== 3;    // true — not equal (strict)
+5 > 3   /   5 &lt; 3   /   5 >= 5   /   5 &lt;= 4;
+
+true && true;   // AND
+true || false;  // OR
+!true;          // NOT — flips to false
+    </code></pre>
+          <div class="callout-warn" style="margin-top:0.45em;">
+            <strong>⚠️ Use <code>===</code> always.</strong> The double equals <code>==</code> does type coercion —
+            JS tries to make things equal by converting types, which leads to <code>0 == false</code> being
+            <code>true</code>.
+            With <code>===</code> you get: same value AND same type. No surprises.
+          </div>
+          <p class="note-sm">console.log(0 == false) → true &nbsp;|&nbsp; console.log(0 === false) → false. That's the
+            bug <code>===</code> prevents.</p>
+        </div>
+      </section>
+
+      <!-- ═══════ SLIDE 28 — CONDITIONALS & LOOPS ═══════ -->
+      <section>
+        <h2>Same syntax as Java</h2>
+        <div class="two-code">
+          <div>
+            <p class="code-label">Conditionals</p>
+            <pre><code data-trim class="language-js">
+if (age >= 18) {
+  console.log("Adult");
+} else if (age >= 13) {
+  console.log("Teenager");
+} else {
+  console.log("Child");
+}
+
+// Ternary
+let label = age >= 18
+  ? "Adult"
+  : "Minor";
+      </code></pre>
+          </div>
+          <div>
+            <p class="code-label">Loops</p>
+            <pre><code data-trim class="language-js">
+for (let i = 0; i &lt; 5; i++) {
+  console.log(i);
+}
+
+let i = 0;
+while (i &lt; 5) {
+  console.log(i);
+  i++;
+}
+
+// for...of — clean loop over arrays
+for (let fruit of fruits) {
+  console.log(fruit);
+}
+      </code></pre>
+          </div>
+        </div>
+        <p class="note-sm" style="margin-top:0.35em;">You know all of this from Java. The only new thing is
+          <code>for...of</code> — it gives you each value directly, no index needed.
+        </p>
+      </section>
+
+      <!-- ═══════ SLIDE 29 — FUNCTIONS ═══════ -->
+      <section>
+        <h2>Arrow functions are the modern standard</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-js">
+// Declaration — classic
+function greet(name) {
+  return "Hello " + name;
+}
+
+// Arrow function — modern, preferred
+const greet = (name) => {
+  return "Hello " + name;
+};
+
+// Shorthand — single expression, no braces or return needed
+const greet = (name) => "Hello " + name;
+
+// Default parameter
+const greet = (name = "stranger") => "Hello " + name;
+greet();        // "Hello stranger"
+greet("Alice"); // "Hello Alice"
+    </code></pre>
+          <div class="callout" style="margin-top:0.35em;">
+            Use arrow functions. They're shorter and handle <code>this</code> correctly when
+            working with the DOM — which matters in the next section.
+          </div>
+        </div>
+        <aside class="notes">📌 Live: write a function that takes two numbers and returns the sum. Call it. Log the
+          result.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 30 — ARRAYS (vertical stack) ═══════ -->
+      <section>
+
+        <!-- 30a — Basics -->
+        <section>
+          <h2>Arrays — Ordered lists of values</h2>
+          <div class="content-wrap">
+            <pre><code data-trim class="language-js">
+let fruits = ["apple", "banana", "cherry"];
+
+fruits[0];             // "apple" — zero-indexed
+fruits.length;         // 3
+
+fruits.push("mango");  // add to end
+fruits.pop();          // remove from end
+
+fruits.includes("cherry"); // true
+fruits.indexOf("banana");  // 1 — position in array
+
+fruits.join(", ");  // "apple, banana, cherry"
+
+let copy = [...fruits]; // spread operator — creates a copy
+      </code></pre>
+            <div class="next-hint">Press ↓ for map, filter, forEach</div>
+          </div>
+        </section>
+
+        <!-- 30b — map/filter/forEach -->
+        <section>
+          <h2>The three methods you'll use constantly</h2>
+          <div class="content-wrap">
+            <pre><code data-trim class="language-js">
+// forEach — run something for each item
+fruits.forEach((fruit) => console.log(fruit));
+
+// map — transform every item, returns a new array (same length)
+fruits.map((fruit) => fruit.toUpperCase());
+// → ["APPLE", "BANANA", "CHERRY"]
+
+// filter — keep only items that match, returns a new array (shorter)
+fruits.filter((fruit) => fruit.length &gt; 5);
+// → ["banana", "cherry"]
+
+// Chain them
+[1,2,3,4,5]
+  .filter(n => n % 2 === 0)
+  .map(n => n * 10);
+// → [20, 40]
+      </code></pre>
+            <div class="callout" style="margin-top:0.35em;">
+              <code>map</code> and <code>filter</code> don't change the original array. They always return a new one.
+            </div>
+          </div>
+          <aside class="notes">📌 Live: [1,2,3,4,5].filter(n => n % 2 === 0).map(n => n * 10) — chain them. Output: [20,
+            40]</aside>
+        </section>
+
+      </section>
+
+      <!-- ═══════ SLIDE 31 — OBJECTS ═══════ -->
+      <section>
+        <h2>Key-value collections</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-js">
+let person = {
+  name: "Alice",
+  age: 25,
+  isStudent: true,
+  greet: function() {
+    return "Hi, I'm " + this.name;
+  },
+};
+
+person.name;         // "Alice" — dot notation
+person["name"];      // "Alice" — bracket notation
+person.name = "Bob"; // update existing
+person.email = "b@b.com"; // add new property
+
+"name" in person;   // true — check if key exists
+    </code></pre>
+          <div class="callout" style="margin-top:0.35em;">
+            <code>this</code> inside a method refers to the object itself.
+            <code>this.name</code> means "my own <code>name</code> property." Think of it as the object talking about
+            itself.
+          </div>
+        </div>
+        <aside class="notes">📌 Live: create a product object: name, price, inStock. Write a describe() method that
+          returns a string.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 32 — CONSOLE ═══════ -->
+      <section>
+        <h2>Your best debugging tool</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 52%;">
+            <pre><code data-trim class="language-js">
+console.log("Hello");     // print anything
+console.log(myVariable);  // inspect a variable's value
+console.error("oh no");   // shows in red
+console.warn("be careful"); // shows in yellow
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p>When something doesn't work, <code>console.log</code> everything.</p>
+            <p style="margin-top:0.4em;">Check what value a variable actually holds at that moment.</p>
+            <div class="callout" style="margin-top:0.4em;">
+              This is how every developer debugs, every day.
+            </div>
+            <p style="margin-top:0.4em; font-size:0.72em; color:var(--color-muted);">
+              Open DevTools → Console. Click an error — it jumps to the exact line.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ PART 4 — DOM SEPARATOR ═══════ -->
+      <section class="part-slide" data-background-color="#12122a">
+        <h1>Part 4</h1>
+        <h3>The DOM — Where JS meets HTML</h3>
+      </section>
+
+      <!-- ═══════ SLIDE 33 — WHAT IS THE DOM? ═══════ -->
+      <section>
+        <h2>How JavaScript sees your page</h2>
+        <div class="row">
+          <div class="col-text">
+            <p>When the browser loads your HTML, it parses it and builds a <strong>tree of objects</strong>
+              in memory. That tree is the DOM — Document Object Model.</p>
+            <p style="margin-top:0.4em;">Every element becomes an object. The <code>&lt;body&gt;</code> is
+              an object. The <code>&lt;h1&gt;</code> inside it is an object. They're linked as a tree —
+              parents, children, siblings.</p>
+            <p style="margin-top:0.4em;">JavaScript accesses this tree through a global object called
+              <code>document</code>. When you call <code>document.querySelector("h1")</code>,
+              JS walks into the tree and hands you that object.
+            </p>
+          </div>
+          <div class="col-text" style="text-align:center;">
+            <pre><code data-trim class="language-text" style="font-size:2em;">
+document
+  └── html
+        ├── head
+        │     └── title
+        └── body
+              ├── h1 "Hello"
+              └── p  "World"
+      </code></pre>
+            <div class="dom-flow" style="flex-wrap:wrap; gap:0.3em; margin-top:0.5em;">
+              <div class="dom-box">User action</div>
+              <span class="dom-arrow">→</span>
+              <div class="dom-box">JS runs</div>
+              <span class="dom-arrow">→</span>
+              <div class="dom-box">DOM changes</div>
+              <span class="dom-arrow">→</span>
+              <div class="dom-box">Browser re-renders</div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">📌 Open DevTools → Elements tab on any live page. Show the DOM tree. Click an element,
+          hover over it — the browser highlights it.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 34 — SELECTING ELEMENTS ═══════ -->
+      <section>
+        <h2>querySelector — your entry point to everything</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-js">
+// Returns the FIRST match — or null if nothing found
+document.querySelector("p");          // by tag
+document.querySelector(".card");      // by class
+document.querySelector("#title");     // by id
+document.querySelector(".card p");    // nested — p inside .card
+
+// Returns ALL matches as a NodeList
+document.querySelectorAll(".card");
+document.querySelectorAll("li");
+
+// Loop over all matches
+document.querySelectorAll("li").forEach((item) => {
+  console.log(item.textContent);
+});
+    </code></pre>
+          <div class="callout" style="margin-top:0.4em;">
+            The syntax is the exact same as CSS selectors. If you can write it in CSS, you can use it here.
+          </div>
+        </div>
+        <aside class="notes">📌 Live: three divs with class card. querySelector gets the first. querySelectorAll gets
+          all three. Log them and expand in console.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 35 — READING & CHANGING CONTENT ═══════ -->
+      <section>
+        <h2>Getting and setting what's inside an element</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-js">
+const title = document.querySelector("h1");
+
+// Text only — safe
+title.textContent;             // read
+title.textContent = "New Title"; // write
+
+// HTML inside — powerful
+title.innerHTML;                    // read
+title.innerHTML = "&lt;em&gt;New&lt;/em&gt; Title"; // write — renders HTML
+    </code></pre>
+          <div class="two-code" style="margin-top:0.4em;">
+            <div class="callout">
+              <strong>textContent</strong> — use for user-generated content. Safe: treats everything as plain text.
+            </div>
+            <div class="callout-warn">
+              <strong>innerHTML</strong> — use when you control the content and need HTML tags.
+              Setting it with user input is a security risk.
+            </div>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: a heading with a button. On click, change textContent. Then try innerHTML with an
+          em tag inside the string.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 36 — ATTRIBUTES ═══════ -->
+      <section>
+        <h2>Reading and writing HTML attributes</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-js">
+const link = document.querySelector("a");
+
+link.getAttribute("href");
+link.setAttribute("href", "https://example.com");
+link.removeAttribute("disabled");
+link.hasAttribute("disabled");    // true or false
+
+// Direct shortcuts for common attributes
+link.href / link.src / link.id;
+link.value;      // current value of an input
+link.checked;    // true/false for checkboxes
+link.disabled;
+    </code></pre>
+        </div>
+        <aside class="notes">📌 Live: a button that starts disabled. After 3 seconds (setTimeout),
+          removeAttribute("disabled") — button activates.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 37 — CHANGING CSS VIA JAVASCRIPT ═══════ -->
+      <section>
+        <h2>Two approaches — inline vs class</h2>
+        <div class="content-wrap">
+          <div class="two-code">
+            <div>
+              <p class="code-label">Option 1 — Inline style (avoid)</p>
+              <pre><code data-trim class="language-js">
+box.style.color = "red";
+box.style.backgroundColor = "blue";
+box.style.display = "none";
+box.style.display = ""; // removes it
+        </code></pre>
+            </div>
+            <div>
+              <p class="code-label">Option 2 — classList (preferred ✅)</p>
+              <pre><code data-trim class="language-js">
+box.classList.add("active");
+box.classList.remove("active");
+box.classList.toggle("active");
+box.classList.contains("active");
+        </code></pre>
+            </div>
+          </div>
+          <div class="callout-ok" style="margin-top:0.4em;">
+            <strong>✅ The preferred pattern:</strong> all visual rules live in CSS, JS only adds/removes classes.
+          </div>
+          <div class="two-code" style="margin-top:0.35em;">
+            <div>
+              <p class="code-label">styles.css</p>
+              <pre><code data-trim class="language-css">
+.hidden { display: none; }
+        </code></pre>
+            </div>
+            <div>
+              <p class="code-label">script.js</p>
+              <pre><code data-trim class="language-js">
+box.classList.toggle("hidden");
+        </code></pre>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: button toggles a box visible/hidden using classList.toggle. Show how the CSS rule
+          does the visual work.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 38 — CREATING & REMOVING ELEMENTS ═══════ -->
+      <section>
+        <h2>Building the DOM from JavaScript</h2>
+        <div class="content-wrap">
+          <p style="font-size:0.78em; margin-bottom:0.35em;">Three steps, every time:</p>
+          <pre><code data-trim class="language-js">
+// 1. Create — in memory, NOT on the page yet
+const card = document.createElement("div");
+
+// 2. Configure
+card.textContent = "New Card";
+card.classList.add("card");
+
+// 3. Insert into the page — NOW the user sees it
+document.body.appendChild(card);
+document.querySelector(".list").appendChild(card);
+document.querySelector(".list").prepend(card); // at the start
+
+// Remove
+card.remove();
+    </code></pre>
+          <div class="callout-warn" style="margin-top:0.4em;">
+            <strong>⚠️</strong> If you forget step 3, the element exists in memory but the user never sees it.
+          </div>
+        </div>
+        <aside class="notes">📌 Live: input + button. On click, create a li, set textContent to input.value, append to
+          ul. Clear the input.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 39 — EVENTS ═══════ -->
+      <section>
+        <h2>Reacting to what the user does</h2>
+        <div class="row">
+          <div class="col-code" style="flex:0 0 55%;">
+            <pre><code data-trim class="language-js">
+const button = document.querySelector("button");
+
+button.addEventListener("click", () => {
+  console.log("clicked");
+});
+
+// The event object — passed automatically
+button.addEventListener("click", (event) => {
+  console.log(event.target); // element that was clicked
+});
+      </code></pre>
+          </div>
+          <div class="col-text">
+            <p style="margin-bottom:0.4em;">Common events:</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Mouse</th>
+                  <th>Keyboard / Input</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>click</code></td>
+                  <td><code>keydown</code></td>
+                </tr>
+                <tr>
+                  <td><code>dblclick</code></td>
+                  <td><code>keyup</code></td>
+                </tr>
+                <tr>
+                  <td><code>mouseenter</code></td>
+                  <td><code>input</code></td>
+                </tr>
+                <tr>
+                  <td><code>mouseleave</code></td>
+                  <td><code>change</code></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><code>submit</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <aside class="notes">📌 Live: addEventListener on keydown for the entire document. Log event.key. Type anything
+          — watch the console.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 40 — INPUT VALUES ═══════ -->
+      <section>
+        <h2>Reading what the user typed</h2>
+        <div class="content-wrap">
+          <pre><code data-trim class="language-js">
+const input = document.querySelector("input");
+
+input.value;         // what the user typed — always a string
+input.value = "";    // clear the input
+input.disabled = true;
+
+const checkbox = document.querySelector("input[type='checkbox']");
+checkbox.checked;        // true or false
+checkbox.checked = true; // check it programmatically
+    </code></pre>
+          <div class="callout" style="margin-top:0.4em;">
+            <code>input.value</code> is a live property. Every time the user types a character,
+            <code>.value</code> updates. You don't need an event to read it — just read it when you need it
+            (usually inside a button click handler).
+          </div>
+        </div>
+        <aside class="notes">📌 Live: input + button. Button logs input.value. Show it has the current text even without
+          an input event.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 41 — FINAL PROJECT ═══════ -->
+      <section>
+        <h2>Let's build something</h2>
+        <div class="two-code">
+          <div>
+            <p class="code-label">HTML structure</p>
+            <pre><code data-trim class="language-html">
+&lt;input type="text"
+       id="taskInput"
+       placeholder="Add a task..." /&gt;
+&lt;button id="addBtn"&gt;Add&lt;/button&gt;
+&lt;ul id="taskList"&gt;&lt;/ul&gt;
+      </code></pre>
+          </div>
+          <div>
+            <p class="code-label">JavaScript logic</p>
+            <pre><code data-trim class="language-js">
+const input  = document.querySelector("#taskInput");
+const button = document.querySelector("#addBtn");
+const list   = document.querySelector("#taskList");
+
+button.addEventListener("click", () => {
+  if (input.value.trim() === "") return;
+
+  const li = document.createElement("li");
+  li.textContent = input.value;
+
+  li.addEventListener("click", () => li.remove());
+
+  list.appendChild(li);
+  input.value = "";
+});
+      </code></pre>
+          </div>
+        </div>
+        <div class="badge-row" style="margin-top:0.5em;">
+          <span class="badge">✅ HTML structure</span>
+          <span class="badge">✅ CSS classes</span>
+          <span class="badge">✅ querySelector</span>
+          <span class="badge">✅ createElement</span>
+          <span class="badge">✅ appendChild</span>
+          <span class="badge">✅ addEventListener</span>
+          <span class="badge">✅ input.value</span>
+          <span class="badge">✅ classList</span>
+        </div>
+        <aside class="notes">📌 Build this live, piece by piece. Start with just the HTML. Add JS one step at a time.
+          Style it at the end.</aside>
+      </section>
+
+      <!-- ═══════ SLIDE 42 — WHAT'S NEXT ═══════ -->
+      <section>
+        <h2>You now know how the web works.</h2>
+        <div class="next-grid">
+          <div class="next-card">
+            <strong>🧱 CSS Frameworks</strong>
+            Tailwind, Bootstrap: pre-written CSS you can use without writing it yourself
+          </div>
+          <div class="next-card">
+            <strong>⚡ JavaScript Async</strong>
+            Fetching data from APIs, loading content without page refresh
+          </div>
+          <div class="next-card">
+            <strong>⚛️ Frameworks</strong>
+            React, Vue: smarter ways to build bigger UIs with components
+          </div>
+          <div class="next-card">
+            <strong>🖥️ Backend</strong>
+            Node.js, databases: the server side of the web
+          </div>
+        </div>
+        <div class="ref-box" style="margin-top:0.7em;">
+          <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html" target="_blank">
+            🔗 Everything we covered today, plus all the topics we pointed to, is at the study guide →
+          </a>
+        </div>
+      </section>
+
+      <!-- ═══════ THANK YOU ═══════ -->
+      <section class="title-slide" data-background-color="#12122a">
+        <h1>Thank You</h1>
+        <h3>Questions &amp; Discussion</h3>
+        <div class="meta">
+          <p>
+            <a href="https://keesouwoudba.github.io/html-css-js-workshop/html-css-js.html" target="_blank"
+              style="color:var(--color-primary); text-decoration:none; font-size:1.1em;">
+              keesouwoudba.github.io/html-css-js-workshop
+            </a>
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+
+  <script>
+    Reveal.initialize({
+      width: 1100,
+      height: 700,
+      margin: 0.07,
+      center: true,
+      hash: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      controls: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: 'c/t',
+      plugins: [RevealNotes, RevealHighlight],
+    });
+  </script>
+</body>
+
+</html>

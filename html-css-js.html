@@ -262,7 +262,8 @@
                 <h2 id="the-html-file">The HTML File</h2>
                 <p>Every webpage you've ever visited is, at its core, an HTML file. A text file with a
                     <code>.html</code> extension. The browser opens it, reads it top to bottom, and paints what it finds
-                    onto the screen.</p>
+                    onto the screen.
+                </p>
                 <p>Every HTML file starts the same way:</p>
                 <div class="language-html highlighter-rouge">
                     <div class="highlight">
@@ -361,7 +362,8 @@
                     <code>&lt;em&gt;</code> means "emphasis" — italic. <code>&lt;u&gt;</code> is underline.
                     <code>&lt;s&gt;</code> is strikethrough, like a deleted price. These aren't just visual — they carry
                     semantic meaning. A screen reader for blind users will actually read <code>&lt;strong&gt;</code>
-                    text with more emphasis.</p>
+                    text with more emphasis.
+                </p>
                 <blockquote>
                     <p><strong>Run this.</strong> See how each tag affects the text differently.</p>
                 </blockquote>
@@ -466,7 +468,8 @@
                     hides the characters. <code>type="email"</code> validates email format on mobile.
                     <code>placeholder</code> is that greyed-out hint text. For radio buttons, give them the same
                     <code>name</code> — that's how the browser knows they're in the same group and only one can be
-                    selected.</p>
+                    selected.
+                </p>
                 <p><code>&lt;textarea&gt;</code> is a multi-line text box. <code>&lt;select&gt;</code> is a dropdown.
                     Both are their own elements, not <code>&lt;input&gt;</code>.</p>
                 <blockquote>
@@ -494,7 +497,8 @@
                 <p>The key difference: <code>&lt;div&gt;</code> is <strong>block-level</strong> — it takes up the full
                     width and starts on a new line. <code>&lt;span&gt;</code> is <strong>inline</strong> — it sits
                     inside text without breaking the line. Think of <code>&lt;div&gt;</code> as a box,
-                    <code>&lt;span&gt;</code> as a highlighter pen on a word.</p>
+                    <code>&lt;span&gt;</code> as a highlighter pen on a word.
+                </p>
                 <blockquote>
                     <p><strong>Run this.</strong> Notice the div creates a visual block. The span changes just the word
                         inside the paragraph.</p>
@@ -538,7 +542,8 @@
                     links. <code>&lt;main&gt;</code> — the main content. <code>&lt;section&gt;</code> — a grouped
                     section of content. <code>&lt;article&gt;</code> — standalone content like a blog post or a card.
                     <code>&lt;aside&gt;</code> — sidebar, supplementary content. <code>&lt;footer&gt;</code> — bottom of
-                    the page.</p>
+                    the page.
+                </p>
                 <p>Google's crawler reads these to understand your page structure. A screen reader uses them to help a
                     blind user navigate. Functionally identical to div — semantically far superior.</p>
                 <blockquote>
@@ -722,7 +727,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 <blockquote>
                     <p><strong>Run this.</strong> Give a <code>&lt;div&gt;</code> a fixed width and height, set
                         <code>background-image</code> and <code>background-size: cover</code>. Try changing to
-                        <code>contain</code>. See the difference.</p>
+                        <code>contain</code>. See the difference.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/02-colors.html" target="_blank">Open
                         demo</a><a class="action-btn download-btn" download="" href="css/02-colors.html">Download
@@ -796,13 +802,15 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 <p><code>px</code> is pixels — exact, fixed. <code>%</code> is relative to the parent. <code>vw</code>
                     and <code>vh</code> are relative to the browser window itself. A div with
                     <code>width: 100vw; height: 100vh</code> takes up the entire screen — useful for full-screen hero
-                    sections.</p>
+                    sections.
+                </p>
                 <p><code>max-width</code> is something you'll use constantly. Set <code>max-width: 1200px</code> on a
                     container and it'll never stretch wider than 1200px on huge monitors, but it'll shrink fine on
                     smaller screens.</p>
                 <blockquote>
                     <p><strong>Run this.</strong> Set <code>width: 100%</code> on a div inside another div. Then set
-                        <code>max-width: 400px</code>. Resize the browser window.</p>
+                        <code>max-width: 400px</code>. Resize the browser window.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/03-box-model.html" target="_blank">Open
                         demo</a><a class="action-btn download-btn" download="" href="css/03-box-model.html">Download
@@ -848,7 +856,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                     <code>padding: 20px</code>. Suddenly the element is 240px wide. That's the default behavior —
                     padding is added <em>on top of</em> the width. <code>box-sizing: border-box</code> fixes this: the
                     padding is counted <em>within</em> the 200px. Put this on every element at the top of every CSS
-                    file:</p>
+                    file:
+                </p>
                 <div class="language-css highlighter-rouge">
                     <div class="highlight">
                         <pre class="highlight"><code class="language-css"><span class="o">*</span><span class="w"> </span><span class="p">{</span>
@@ -859,7 +868,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 </div>
                 <blockquote>
                     <p><strong>Run this.</strong> Create two identical divs, same width and padding. Add
-                        <code>box-sizing: border-box</code> to only one. See the size difference.</p>
+                        <code>box-sizing: border-box</code> to only one. See the size difference.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/03-box-model.html" target="_blank">Open
                         demo</a><a class="action-btn download-btn" download="" href="css/03-box-model.html">Download
@@ -956,11 +966,30 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 <blockquote>
                     <p><strong>Run this.</strong> Three divs inside a container. Add <code>display: flex</code>. Try
                         every <code>justify-content</code> value. Then try <code>align-items: center</code> with a fixed
-                        <code>height</code> on the container. That's how you vertically center things.</p>
+                        <code>height</code> on the container. That's how you vertically center things.
+                    </p>
                 </blockquote>
-                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/05-flexbox-basics.html"
-                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
-                        href="css/05-flexbox-basics.html">Download HTML</a></div>
+                <p>Examples:</p>
+                <ul>
+                    <li>
+                        <strong>05 Flexbox Basics</strong><br>
+                        <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/05-flexbox-basics.html"
+                                target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                                href="css/05-flexbox-basics.html">Download HTML</a></div>
+                    </li>
+                    <li>
+                        <strong>06 Flex Justify</strong><br>
+                        <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/06-flex-justify.html"
+                                target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                                href="css/06-flex-justify.html">Download HTML</a></div>
+                    </li>
+                    <li>
+                        <strong>07 Flex Direction</strong><br>
+                        <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/07-flex-direction.html"
+                                target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                                href="css/07-flex-direction.html">Download HTML</a></div>
+                    </li>
+                </ul>
                 <hr />
                 <h2 id="position">Position</h2>
                 <p>By default, elements just stack vertically, top to bottom. Position lets you break out of that.</p>
@@ -1032,6 +1061,17 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/10-hover-transitions.html"
                         target="_blank">Open demo</a><a class="action-btn download-btn" download=""
                         href="css/10-hover-transitions.html">Download HTML</a></div>
+
+                <h2 id="grid-basics">Grid Basics</h2>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/08-grid-basics.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="css/08-grid-basics.html">Download HTML</a></div>
+
+                <h2 id="responsive-media-queries">Responsive Media Queries</h2>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="css/11-responsive-media-queries.html"
+                        target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                        href="css/11-responsive-media-queries.html">Download HTML</a></div>
+
                 <h2 id="-_2">---</h2>
                 <h1 id="part-3-javascript">PART 3 — JAVASCRIPT</h1>
                 <hr />
@@ -1062,7 +1102,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 <p><code>let</code> vs <code>const</code> — use <code>const</code> by default. Only switch to
                     <code>let</code> when you know you'll need to reassign. This is a habit that prevents bugs. If you
                     try to reassign a <code>const</code>, JavaScript will throw an error immediately, which is exactly
-                    what you want — it means you made a mistake.</p>
+                    what you want — it means you made a mistake.
+                </p>
                 <p>Don't use <code>var</code>. It's the old way and has weird scoping rules. Forget it exists.</p>
                 <blockquote>
                     <p><strong>Run this.</strong> Open the browser console (F12). Type <code>const x = 5; x = 10;</code>
@@ -1089,7 +1130,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 </div>
                 <p>Template literals use backticks (<code>`</code>), not quotes. The <code>${}</code> syntax lets you
                     embed any JavaScript expression — a variable, a calculation, a function call. This replaces
-                    <code>"Hello " + name + "!"</code> which is verbose and error-prone.</p>
+                    <code>"Hello " + name + "!"</code> which is verbose and error-prone.
+                </p>
                 <blockquote>
                     <p><strong>Run this.</strong> <code>let price = 9.99; console.log(</code>Price is
                         $${price}<code>);</code></p>
@@ -1121,7 +1163,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                     </div>
                 </div>
                 <p><code>Math.random()</code> is very commonly used. To get a random integer from 0 to 9:
-                    <code>Math.floor(Math.random() * 10)</code>.</p>
+                    <code>Math.floor(Math.random() * 10)</code>.
+                </p>
                 <blockquote>
                     <p><strong>Run this.</strong> <code>console.log(Math.floor(Math.random() * 100))</code> — run it
                         several times. Different number each time.</p>
@@ -1151,11 +1194,13 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 <p>Use <code>===</code> not <code>==</code>. The double equals <code>==</code> does type coercion —
                     JavaScript tries to convert types to make things equal, which leads to bizarre bugs like
                     <code>0 == false</code> being <code>true</code>. <code>===</code> is strict: same value AND same
-                    type. Always.</p>
+                    type. Always.
+                </p>
                 <blockquote>
                     <p><strong>Run this.</strong> <code>console.log(0 == false)</code> then
                         <code>console.log(0 === false)</code>. One is true, one is false. This is why we use
-                        <code>===</code>.</p>
+                        <code>===</code>.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/02-data-types.html" target="_blank">Open
                         demo</a><a class="action-btn download-btn" download="" href="js/02-data-types.html">Download
@@ -1213,7 +1258,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                     array directly. No index to manage, no length to check.</p>
                 <blockquote>
                     <p><strong>Run this.</strong> Loop from 1 to 10 and log whether each number is odd or even using
-                        <code>% 2</code>.</p>
+                        <code>% 2</code>.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/08-loops.html" target="_blank">Open
                         demo</a><a class="action-btn download-btn" download="" href="js/08-loops.html">Download HTML</a>
@@ -1249,11 +1295,24 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                     the default choice in modern JavaScript.</p>
                 <blockquote>
                     <p><strong>Run this.</strong> Write a function <code>multiply(a, b)</code> that returns
-                        <code>a * b</code>. Call it with several values.</p>
+                        <code>a * b</code>. Call it with several values.
+                    </p>
                 </blockquote>
-                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/06-functions.html" target="_blank">Open
-                        demo</a><a class="action-btn download-btn" download="" href="js/06-functions.html">Download
-                        HTML</a></div>
+                <p>Examples:</p>
+                <ul>
+                    <li>
+                        <strong>06 Functions</strong><br>
+                        <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/06-functions.html"
+                                target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                                href="js/06-functions.html">Download HTML</a></div>
+                    </li>
+                    <li>
+                        <strong>10 Arrow Functions</strong><br>
+                        <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/10-arrow-functions.html"
+                                target="_blank">Open demo</a><a class="action-btn download-btn" download=""
+                                href="js/10-arrow-functions.html">Download HTML</a></div>
+                    </li>
+                </ul>
                 <hr />
                 <h2 id="arrays">Arrays</h2>
                 <p>An array is an ordered list of values. In JavaScript, one array can hold mixed types — numbers,
@@ -1320,10 +1379,12 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 </div>
                 <p><code>this</code> inside a method refers to the object itself. <code>this.name</code> inside
                     <code>greet()</code> means "the name property of this same object." This is how objects have their
-                    own context.</p>
+                    own context.
+                </p>
                 <blockquote>
                     <p><strong>Run this.</strong> Create an object for a car: make, model, year. Add a method
-                        <code>describe()</code> that returns a string describing the car.</p>
+                        <code>describe()</code> that returns a string describing the car.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="js/09-objects.html" target="_blank">Open
                         demo</a><a class="action-btn download-btn" download="" href="js/09-objects.html">Download
@@ -1340,7 +1401,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                     </div>
                 </div>
                 <p>The browser console (F12 → Console) is your best friend when debugging. When something doesn't work,
-                    <code>console.log</code> everything. Check what value a variable actually has at that moment.</p>
+                    <code>console.log</code> everything. Check what value a variable actually has at that moment.
+                </p>
                 <h2 id="-_3">---</h2>
                 <h1 id="part-4-the-dom">PART 4 — THE DOM</h1>
                 <hr />
@@ -1350,11 +1412,13 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                     Model.</p>
                 <p>Every element in your HTML becomes an object in that tree. The <code>&lt;body&gt;</code> is an
                     object. The <code>&lt;h1&gt;</code> inside it is an object. The text inside the
-                    <code>&lt;h1&gt;</code> is an object. They're all linked — parents, children, siblings.</p>
+                    <code>&lt;h1&gt;</code> is an object. They're all linked — parents, children, siblings.
+                </p>
                 <p>JavaScript has access to this tree through a global object called <code>document</code>.
                     <code>document</code> is the entry point to your entire page. When you say
                     <code>document.querySelector("h1")</code>, you're asking JavaScript to walk into that tree and find
-                    the first <code>&lt;h1&gt;</code> object and give it to you.</p>
+                    the first <code>&lt;h1&gt;</code> object and give it to you.
+                </p>
                 <p>Once you have that object, you can read it, change it, delete it, or create new ones. That's how
                     interactivity works. A click happens → JavaScript runs → JavaScript changes the DOM → the browser
                     re-renders the changed part.</p>
@@ -1405,13 +1469,15 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 </div>
                 <p><code>textContent</code> is safe — it treats everything as plain text. If you set
                     <code>textContent = "&lt;strong&gt;bold&lt;/strong&gt;"</code> the user will literally see the
-                    <code>&lt;strong&gt;</code> tags as text.</p>
+                    <code>&lt;strong&gt;</code> tags as text.
+                </p>
                 <p><code>innerHTML</code> is powerful but potentially dangerous. If you insert user-supplied content
                     with <code>innerHTML</code>, malicious users can inject scripts. For user-generated content, always
                     use <code>textContent</code>.</p>
                 <blockquote>
                     <p><strong>Run this.</strong> Select a heading. Change its <code>textContent</code>. Then try
-                        <code>innerHTML</code> with a <code>&lt;em&gt;</code> tag inside the string.</p>
+                        <code>innerHTML</code> with a <code>&lt;em&gt;</code> tag inside the string.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/07-innerhtml-vs-text.html"
                         target="_blank">Open demo</a><a class="action-btn download-btn" download=""
@@ -1470,7 +1536,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                     Separation of concerns — CSS handles looks, JS handles behavior.</p>
                 <blockquote>
                     <p><strong>Run this.</strong> Write a CSS class <code>.hidden { display: none; }</code>. In JS,
-                        <code>classList.toggle("hidden")</code> on a button click. You now have a show/hide toggle.</p>
+                        <code>classList.toggle("hidden")</code> on a button click. You now have a show/hide toggle.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/03-changing-styles.html"
                         target="_blank">Open demo</a><a class="action-btn download-btn" download=""
@@ -1543,7 +1610,8 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 </div>
                 <blockquote>
                     <p><strong>Run this.</strong> Add a <code>keydown</code> listener to <code>document</code>. Log
-                        <code>event.key</code>. Type on the keyboard — see what gets logged.</p>
+                        <code>event.key</code>. Type on the keyboard — see what gets logged.
+                    </p>
                 </blockquote>
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/04-event-listeners.html"
                         target="_blank">Open demo</a><a class="action-btn download-btn" download=""
@@ -1569,6 +1637,13 @@ required            <span class="cm">&lt;!-- makes form field mandatory (no valu
                 <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/05-input-values.html"
                         target="_blank">Open demo</a><a class="action-btn download-btn" download=""
                         href="dom/05-input-values.html">Download HTML</a></div>
+
+                <hr />
+                <h2 id="timers">Timers</h2>
+                <div class="mt-2 mb-4"><a class="action-btn demo-btn" href="dom/08-timers.html" target="_blank">Open
+                        demo</a><a class="action-btn download-btn" download="" href="dom/08-timers.html">Download
+                        HTML</a></div>
+
                 <hr />
                 <h2 id="patterns-putting-it-all-together">Patterns — Putting It All Together</h2>
                 <p><strong>Toggle show/hide:</strong></p>
